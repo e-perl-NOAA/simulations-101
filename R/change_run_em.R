@@ -19,6 +19,8 @@ change_run_em <- function(model_dir,
       inputs <- r4ss::SS_read(dir = dir_iter)
       inputs[[df$config_file[x]]][[df$var_change[x]]]<- df$new_val[x]
       inputs$start$N_bootstraps <- 2
+      
+      # need to add fit bias ramp
       r4ss::SS_write(inputs, dir = dir_iter, overwrite = TRUE)
       
       r4ss::run(dir = dir_iter, exe = exe_filepath)

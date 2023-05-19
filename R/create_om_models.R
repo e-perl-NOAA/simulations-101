@@ -13,6 +13,8 @@
 #' @export
 #'
 #' @examples
+
+# could put options for a df to change om options - may be needed down the road.
 create_om_models <- function(model_dir,
                              iterations = 1,
                              exe_filepath) {
@@ -25,7 +27,8 @@ create_om_models <- function(model_dir,
     file.copy(files, to, recursive = FALSE)
     
     inputs <- r4ss::SS_read(dir = to)
-    inputs$start$N_bootstraps <- 3
+    inputs$start$N_bootstraps <- 3 # creates 1 bootstrap file
+    inputs$ctl$max_bias_adj <- -1 #
     r4ss::SS_write(inputs, dir = to, overwrite = TRUE)
     
     r4ss::SS_recdevs(
