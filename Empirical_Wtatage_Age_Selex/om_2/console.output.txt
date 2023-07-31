@@ -1,0 +1,35 @@
+###
+console output
+2023-07-07 10:56:19.652089
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Reading the empirical weight at age file ...done
+Evaluating biology calculations once ... done
+Starting optimization of 'ss_win' in phase 1 of 1 at Fri Jul  7 10:56:17 2023
+1 1 -log(L): 808.921  Spbio: 50029 8862.81
+phase= 1 | nvar=  1 | iter=  0 | nll=8.09e+02 | mag=3.14e-14 | par[  1]=dummy_parm
+Optimization completed after 0.057 s with final statistics:
+  nll=808.920656 | mag=3.13908e-14 | par[  1]=dummy_parm
+
+1 2 -log(L): 808.921  Spbio: 50029 8862.81
+Iterations: 2
+Finished calculating benchmarks
+Finished forecast
+Writing wtatage.ss_new
+Finished posteriors
+ finished appending to cumreport.sso 
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 1 warning  and 1 note 
+
+Finished running model 'ss_win' after 1.7 s.
