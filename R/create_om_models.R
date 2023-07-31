@@ -15,30 +15,34 @@
 #' @examples
 
 # could put options for a df to change om options - may be needed down the road.
+# the om models are the iterations that will go in the ems
 create_om_models <- function(model_dir,
                              iterations = 1,
                              exe_filepath) {
-  for(i in 1:iterations){
-    from <- normalizePath(model_dir, mustWork = TRUE)
-    to <- file.path(from, paste0("om_", i))
-    files <- list.files(from, pattern = ".ss", full.names = TRUE)
-    
-    dir.create(to, showWarnings = FALSE, recursive = TRUE)
-    file.copy(files, to, recursive = FALSE)
-    
-    inputs <- r4ss::SS_read(dir = to)
-    inputs$start$N_bootstraps <- 3 # creates 1 bootstrap file
-    inputs$ctl$max_bias_adj <- -1 #
-    r4ss::SS_write(inputs, dir = to, overwrite = TRUE)
-    
-    r4ss::SS_recdevs(
-      fyr = inputs$ctl$MainRdevYrFirst,
-      lyr = inputs$ctl$MainRdevYrLast,
-      dir = to,
-      ctlfile = "control.ss",
-      newctlfile = "control.ss"
-    )
-    
-    r4ss::run(dir = to, exe = exe_filepath, extras = "-nohess -stopph 0")
+  for(m in 1:length(model_dir)){
+    for(i in 1:iterations){
+      from <- normalizePath(model_dir[m], mustWork = TRUE)
+      to <- file.path(from, paste0("om_", i))
+      files <- list.files(from, pattern = ".SS$|.ss$|.dat|.ctl", full.names = TRUE)
+      
+      dir.create(to, showWarnings = FALSE, recursive = TRUE)
+      file.copy(files, to, recursive = FALSE)
+      
+      inputs <- r4ss::SS_read(dir = to)
+      inputs$start$N_bootstraps <- 3 # creates 1 bootstrap file
+      inputs$ctl$max_bias_adj <- -1 #
+      inputs$start$init_values_src <- 0
+      r4ss::SS_write(inputs, dir = to, overwrite = TRUE)
+      
+      r4ss::SS_recdevs(
+        fyr = inputs$ctl$MainRdevYrFirst,
+        lyr = inputs$ctl$MainRdevYrLast,
+        dir = to,
+        ctlfile = inputs$start$ctlfile,
+        newctlfile = inputs$start$ctlfile
+        )
+      
+      r4ss::run(dir = to, exe = exe_filepath, extras = "-nohess -stopph 0", skipfinished = FALSE)
+    }
   }
 }
