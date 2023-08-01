@@ -1,7 +1,7 @@
-#install.packages("pak") # if needed
+install.packages("pak") # if needed
 pak::pkg_install("r4ss/r4ss")
 library(furrr)
-#library(r4ss)
+library(r4ss)
   
 dir <- getwd()
 dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
@@ -28,14 +28,35 @@ copy_files_to_em(model_dir = dirs,
                  df = em_df)
 
 # Change the em config files based on the df
-change_run_em(model_dir = dirs[1:3], 
+change_run_em(model_dir = dirs[1], 
               df = em_df, 
               exe_filepath = file.path(dir, "ss_win.exe"))
 
 change_run_em(model_dir = dirs[4],
               df = em_df,
               exe_filepath = file.path(dir, "ss_win.exe"))
+
+change_run_em_parallel(model_dir = dirs, 
+                       df = em_df, 
+                       exe_filepath = file.path(dir, "ss_win.exe"))
   
+# left off:
+# NOTE: the directory
+# C:/Users/eg-windows/Documents/github-repos/simulations-101/Simple/em_recdev_1/iteration_1/plots
+# contains plots from a previous model run, renaming to
+# C:/Users/eg-windows/Documents/github-repos/simulations-101/Simple/em_recdev_1/iteration_1/plots_StartTime_Tue_Aug_1_21.57.52_2023
+# Executable found at C:\Users\eg-windows\Documents\github-repos\simulations-101\ss_win.exe
+# Changing working directory to C:/Users/eg-windows/Documents/github-repos/simulations-101/Simple/em_recdev_1/iteration_2 and running model using the command: C:/Users/eg-windows/Documents/github-repos/simulations-101/ss_win.exe 
+# Input 'show_in_console' = FALSE, so writing console output to console.output.txt
+# console output written to console.output.txt
+# Error in `purrr::map()`:
+#   ℹ In index: 3.
+# Caused by error:
+#   ℹ In index: 1.
+# Caused by error in `r4ss::SS_fitbiasramp()`:
+#   ! you need to have covar=TRUE in the input to the SS_output function
+# Run `rlang::last_trace()` to see where the error occurred.
+# There were 50 or more warnings (use warnings() to see the first 50)
 
 # Bias correction test
 dir_iter <- list.files(list.files(dirs[2], pattern = "em_*", full.names = TRUE)[2], full.names = TRUE)[2]

@@ -1,5 +1,5 @@
      value                                                label
- 1955.3739 #_last_early_yr_nobias_adj_in_MPD                   
+ 1955.2825 #_last_early_yr_nobias_adj_in_MPD                   
  1971.0000 #_first_yr_fullbias_adj_in_MPD                      
  1998.6129 #_last_yr_fullbias_adj_in_MPD                       
  2002.8830 #_first_recent_yr_nobias_adj_in_MPD                 

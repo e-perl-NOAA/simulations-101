@@ -100,11 +100,11 @@
 -4 #_recdev_early_phase
 0 #_forecast_recruitment phase (incl. late recr) (0 value resets to maxphase+1)
 1 #_lambda for Fcast_recr_like occurring before endyr+1
-1958.5736 #_last_early_yr_nobias_adj_in_MPD
-1970.9999 #_first_yr_fullbias_adj_in_MPD
-1996.7166 #_last_yr_fullbias_adj_in_MPD
-2003.5894 #_first_recent_yr_nobias_adj_in_MPD
-   0.7013 #_max_bias_adj_in_MPD (1.0 to mimic pre-2009 models)
+1958.5611 #_last_early_yr_nobias_adj_in_MPD
+1971.0000 #_first_yr_fullbias_adj_in_MPD
+1996.7277 #_last_yr_fullbias_adj_in_MPD
+2003.5878 #_first_recent_yr_nobias_adj_in_MPD
+   0.7011 #_max_bias_adj_in_MPD (1.0 to mimic pre-2009 models)
 0 #_period of cycles in recruitment (N parms read below)
 -5 #min rec_dev
 5 #max rec_dev

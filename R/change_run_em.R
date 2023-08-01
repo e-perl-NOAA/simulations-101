@@ -7,6 +7,7 @@
 #' @return
 #' @export
 #' @import furrr
+#' @import purrr
 #' @import future
 #'
 #' @examples
@@ -24,17 +25,20 @@ base_change_run_em <- function(model_dir,
                                df,
                                exe_filepath){
   dir_root_name <- dirname(model_dir)
-  convergance.df <- data.frame(
+  
+  convergence.df <- data.frame(
     model = NULL,
     em = NULL,
     iteration = NULL,
-    model_converged = NULL)
+    model_converged = NULL,
+    model_runtime = NULL)
   
   for(x in 1:length(df$em_names)){
   em_iterations <- list.dirs(file.path(model_dir, paste0("em_", df$em_names[x])), 
                              full.names = TRUE, recursive = FALSE)
   for(i in 1:length(em_iterations)){
-      dir_iter<- file.path(em_iterations[i])
+      start_time <- Sys.time()
+      dir_iter <- file.path(em_iterations[i])
       clean_plots(dir_iter)
       dir_iter_number <- stringr::str_sub(dir_iter, start= -2)
       inputs <- r4ss::SS_read(dir = dir_iter)
@@ -55,6 +59,7 @@ base_change_run_em <- function(model_dir,
          forecast = FALSE, verbose = FALSE, printstats = FALSE, NoCompOK = TRUE,
          covar = TRUE)
       
+      # only do this if a covar file exists
       if(file.exists(file.path(dir_iter,"covar.sso"))){
         bias <- r4ss::SS_fitbiasramp(replist,
                                      # plotdir = dir_bias,
@@ -96,18 +101,20 @@ base_change_run_em <- function(model_dir,
         # Report and ss_summary that have the bias adjust with the no_bias_adjust
         # renamed previously
         if(dir_iter_number %in% c("_1", "_2")){
-          browser()
           replist <- r4ss::SS_output(
             dir = dir_iter,
             forecast = FALSE, verbose = FALSE, printstats = FALSE, NoCompOK = TRUE)
           r4ss::SS_plots(replist, openfile = FALSE, verbose = FALSE)
         }
       }
+      stop_time <- Sys.time()
+      runtime <- stop_time - start_time
       convergence <- data.frame(
         model = basename(model_dir),
         em = df$em_names[x],
         iteration = basename(dir_iter),
-        model_converged <- file.exists(file.path(dir_iter,"covar.sso"))
+        model_converged <- file.exists(file.path(dir_iter,"covar.sso")),
+        model_runtime <- runtime
       )
       convergence.df <- rbind(convergence.df, convergence)
       # remove unnecessary files

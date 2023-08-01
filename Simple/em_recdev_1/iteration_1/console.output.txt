@@ -1,6 +1,6 @@
 ###
 console output
-2023-07-11 16:04:25.691873
+2023-08-01 22:00:12.011483
 ###
  
  reading from starter.ss
@@ -12,31 +12,31 @@ Data read successful 999
 End of control file successful! 999
 Begin setting up parameters ...  end of parameter section 
 Evaluating biology calculations once ... done
-Starting optimization of 'ss_win' in phase 1 of 5 at Tue Jul 11 16:01:26 2023
-phase= 1 | nvar=  3 | iter=  0 | nll=1.50e+03 | mag=8.29e+03 | par[  1]=SR_parm[1]
-phase= 1 | nvar=  3 | iter=  6 | nll=1.49e+03 | mag=3.52e+00 | par[  1]=SR_parm[1]
-phase= 2 | nvar= 37 | iter=  0 | nll=1.49e+03 | mag=5.96e+02 | par[ 22]=recdev1[20]
-phase= 2 | nvar= 37 | iter= 20 | nll=1.36e+03 | mag=8.49e+03 | par[  2]=SR_parm[1]
-phase= 2 | nvar= 37 | iter= 40 | nll=1.32e+03 | mag=4.34e+03 | par[  2]=SR_parm[1]
-phase= 2 | nvar= 37 | iter= 52 | nll=1.31e+03 | mag=9.19e+00 | par[  2]=SR_parm[1]
-phase= 3 | nvar= 39 | iter=  0 | nll=1.31e+03 | mag=7.54e+01 | par[ 39]=selparm[4]
-phase= 3 | nvar= 39 | iter= 20 | nll=1.31e+03 | mag=3.18e+02 | par[  2]=SR_parm[1]
-phase= 3 | nvar= 39 | iter= 40 | nll=1.31e+03 | mag=3.84e+01 | par[  2]=SR_parm[1]
-phase= 3 | nvar= 39 | iter= 46 | nll=1.31e+03 | mag=4.70e-01 | par[  2]=SR_parm[1]
+Starting optimization of 'ss_win' in phase 1 of 5 at Tue Aug  1 21:59:25 2023
+phase= 1 | nvar=  3 | iter=  0 | nll=1.50e+03 | mag=6.44e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter=  7 | nll=1.49e+03 | mag=2.81e-01 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 37 | iter=  0 | nll=1.49e+03 | mag=5.99e+02 | par[ 22]=recdev1[20]
+phase= 2 | nvar= 37 | iter= 20 | nll=1.32e+03 | mag=8.52e+03 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 37 | iter= 40 | nll=1.31e+03 | mag=7.35e+02 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 37 | iter= 47 | nll=1.31e+03 | mag=2.35e+00 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter=  0 | nll=1.31e+03 | mag=7.62e+01 | par[ 39]=selparm[4]
+phase= 3 | nvar= 39 | iter= 20 | nll=1.31e+03 | mag=6.63e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter= 40 | nll=1.31e+03 | mag=3.55e+01 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter= 46 | nll=1.31e+03 | mag=1.05e-02 | par[  2]=SR_parm[1]
 phase= 4 | nvar= 44 | iter=  0 | nll=1.31e+03 | mag=1.67e+02 | par[  4]=MGparm[15]
-phase= 4 | nvar= 44 | iter= 20 | nll=1.31e+03 | mag=6.67e+02 | par[  6]=SR_parm[1]
-phase= 4 | nvar= 44 | iter= 40 | nll=1.31e+03 | mag=8.28e+00 | par[  4]=MGparm[15]
-phase= 4 | nvar= 44 | iter= 55 | nll=1.31e+03 | mag=5.16e-05 | par[  6]=SR_parm[1]
-phase= 5 | nvar= 54 | iter=  0 | nll=1.31e+03 | mag=5.16e-05 | par[  6]=SR_parm[1]
-Optimization completed after 33 s with final statistics:
-  nll=1305.100613 | mag=5.16216e-05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 44 | iter= 20 | nll=1.31e+03 | mag=6.64e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 44 | iter= 40 | nll=1.31e+03 | mag=1.31e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 44 | iter= 54 | nll=1.31e+03 | mag=1.28e-05 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 54 | iter=  0 | nll=1.31e+03 | mag=1.28e-05 | par[  6]=SR_parm[1]
+Optimization completed after 8.8 s with final statistics:
+  nll=1305.056041 | mag=1.27654e-05 | par[  6]=SR_parm[1]
 
 Wrote first version of output files (before hessian, benchmark, and forecast)
-Calculating Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (33 s) 
-Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (1 m 45 s) 
-Inverting Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (0.017 s) 
-Starting standard error calculations...  done (1.5 s) 
-Iterations: 442
+Calculating Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (8.9 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (27 s) 
+Inverting Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (0.003 s) 
+Starting standard error calculations...  done (0.38 s) 
+Iterations: 438
 Finished forecast
 Writing wtatage.ss_new
 mceval counter: 0
@@ -47,4 +47,4 @@ Begin writing *.ss_new output files ... Finished writing *.ss_new output files
 !!  Run has completed  !! 
 !!  See warning.sso for 2 notes 
 
-Finished running model 'ss_win' after 2 m 59 s.
+Finished running model 'ss_win' after 47 s.

@@ -1331,7 +1331,7 @@ Finished recruitdev obj_fun -15.8356 31 0.72
 Wrote first version of output files (before hessian, benchmark, and forecast)
 Start benchmark and forecast, if requested
 Finished benchmark, forecast, and sdreporting
-Iterations: 1393
+Iterations: 1197
 Finished forecast
 Writing wtatage.ss_new
 Finished StdDev quantities

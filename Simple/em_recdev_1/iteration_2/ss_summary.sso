@@ -1,8 +1,8 @@
 #V3.30.21.beta: not an official version of SS;_safe;_compile_date:_Apr 28 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1
 data.ss #_DataFile 
 control.ss #_Control 
-Run_Date: Tue Jul 11 16:06:49 2023
-Final_phase: 5  N_iterations: 1393
+Run_Date: Tue Aug  1 21:57:52 2023
+Final_phase: 5  N_iterations: 1197
 #_LIKELIHOOD 
 Label logL*Lambda
 TOTAL_LogL 1238.12
@@ -12,8 +12,8 @@ Length_comp 650.902
 Age_comp 515.183
 Size_at_age 87.1049
 Recruitment -7.21726
-InitEQ_regime 0
-Sum_recdevs -2.55351e-15
+InitEQ_regime 1.54502e-30
+Sum_recdevs -2.33147e-15
 Forecast_Recruitment 0
 Parm_priors 1.03014
 Parm_softbounds 0.0012137
