@@ -15,13 +15,11 @@
 change_run_em <- function(model_dir,
                           df,
                           exe_filepath){
-  ncores <- parallel::detectCores()
-  future::plan(multisession, workers = ncores)
-  furrr::future_map(model_dir, ~ base_change_run_em(
+  purrr::map(model_dir, ~ base_change_run_em(
     model_dir = .x,
     df = df,
     exe_filepath = exe_filepath))
-  }
+}
 
 
 base_change_run_em <- function(model_dir,
@@ -37,9 +35,9 @@ base_change_run_em <- function(model_dir,
     model_runtime = NULL)
   
   for(x in 1:length(df$em_names)){
-  em_iterations <- list.dirs(file.path(model_dir, paste0("em_", df$em_names[x])), 
-                             full.names = TRUE, recursive = FALSE)
-  for(i in 1:length(em_iterations)){
+    em_iterations <- list.dirs(file.path(model_dir, paste0("em_", df$em_names[x])), 
+                               full.names = TRUE, recursive = FALSE)
+    for(i in 1:length(em_iterations)){
       start_time <- Sys.time()
       dir_iter <- file.path(em_iterations[i])
       clean_plots(dir_iter)
@@ -48,18 +46,18 @@ base_change_run_em <- function(model_dir,
       inputs[[df$config_file[x]]][[df$var_change[x]]]<- df$new_val[x]
       inputs$start$N_bootstraps <- 2
       r4ss::SS_write(inputs, dir = dir_iter, overwrite = TRUE)
-        
+      
       # run initial model
       r4ss::run(dir = dir_iter, exe = exe_filepath, skipfinished = FALSE)
-        
+      
       # get the rec dev bias and run bias correction, keep results from non-
       # bias corrected models for first 2 iterations of each em
-        
+      
       ctl_file_in <- file.path(dir_iter, inputs$start$ctlfile)
       replist <- r4ss::SS_output(
-         dir = dir_iter,
-         forecast = FALSE, verbose = FALSE, printstats = FALSE, NoCompOK = TRUE,
-         covar = TRUE)
+        dir = dir_iter,
+        forecast = FALSE, verbose = FALSE, printstats = FALSE, NoCompOK = TRUE,
+        covar = TRUE)
       
       # only do this if a covar file exists
       if(file.exists(file.path(dir_iter,"covar.sso")) & any(grep("do not write", readLines(file.path(dir_iter,"covar.sso")))) == FALSE){
@@ -124,7 +122,7 @@ base_change_run_em <- function(model_dir,
       admb_files_delete <- list.files(path = dir_iter, pattern = "*.std|*.htp|*.eva|*.tds|*.bar|*.cov|*.dep|*.hes|*.rpt|*.rep|*.cpp|*.log|*.obj|*.tmp|*.ecm|*.mc2|*.mcm|*.hst|*.psv|gradient.*|tmp_admb|variance|SIS_table.sso|rebuild.sso|posterior_obj_func.sso|posterior_vectors.sso|posteriors.sso|derived_posteriors.sso|CumReport.sso|ParmTrace.sso|runnumber.ss$|ss.p0*|ss.b0*|ss.r0*",
                                       full.names = TRUE)
       file.remove(admb_files_delete)
-  }
+    }
   }
   utils::write.csv(convergence.df, paste0(dir_root_name,"/model_convergence.csv"))
 }
