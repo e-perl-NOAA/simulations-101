@@ -7,6 +7,7 @@ dir <- getwd()
 dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
 dirs <- subset(dirs, !grepl(dirs, pattern = ".Rproj.user"))
 dirs <- grep('.git', dirs, fixed = TRUE, value = TRUE, invert = TRUE)
+dirs <- grep('unnested_iterations', dirs, fixed = TRUE, value = TRUE, invert = TRUE)
 dirs <- grep(paste0(dir, "/R"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
 dirs <- grep(paste0(dir, "/.Rproj.user"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
 
@@ -22,12 +23,12 @@ em_df<- data.frame(
 
 # These will become the "iterations" in the ems
 # probably need to make this run in parallel too
-start_time <- Sys.time()
-create_om_models(model_dir = dirs,
-                 iterations = 10,
-                 exe_filepath = file.path(dir, "ss_win.exe"))
-stop_time <- Sys.time()
-no_parallel_time <- stop_time - start_time
+# start_time <- Sys.time()
+# create_om_models(model_dir = dirs,
+#                  iterations = 10,
+#                  exe_filepath = file.path(dir, "ss_win.exe"))
+# stop_time <- Sys.time()
+# no_parallel_time <- stop_time - start_time
 # 9.91 min
 
 start_time <- Sys.time()
@@ -41,8 +42,12 @@ parallel_time <- stop_time - start_time
 # Copy the bootstrap files from the om iterations and the configuration files 
 # from the overall directory to the em > iteration file folders
 # this runs fast without having to parallelize it
-copy_files_to_em(model_dir = dirs, 
-                 df = em_df)
+# copy_files_to_em(model_dir = dirs, 
+#                  df = em_df)
+
+copy_files_to_em_unnested(dirs = dirs, 
+                 df = em_df,
+                 new_filename = "new_unnested_iterations")
 
 
 # Model folders in parallel
@@ -78,6 +83,16 @@ time_purr_iterations_in_parallel <- stop_time - start_time
 # With 2 iterations this took ~1.5 hours
 # With 10 iterations x 3 EMs this took 2.56 hours
 # Total of 180 models
+
+# Unnested Iterations in parallel
+start_time <- Sys.time()
+unnested_change_run_em_parallel(dirs = dirs, 
+                                df = em_df, 
+                                exe_filepath = file.path(dir, "ss_win.exe"),
+                                new_filename = "new_unnested_iterations")
+stop_time <- Sys.time()
+time_purr_unnested_parallel <- stop_time - start_time
+# Ran in 26 minutes
 
 # Need to figure out output
 # left off:
