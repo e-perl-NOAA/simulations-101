@@ -5,20 +5,22 @@
 #' names of the em's in the specified data frame.
 #' 
 #' 
-#' @param dirs 
-#' @param df 
-#' @param new_filename The name of the folder that contain all of your unnested iterations
+#' @param dir List of model directories in working directory.
+#' @param df The data frame that has all the changes in it.
+#' @param new_filename The name of the of the file folder that will hold your 
+#' unnested simulation runs.
 #'
-#' @return
+#' @import r4ss
+#' 
 #' @export
 #'
-#' @examples
-copy_files_to_em_unnested <- function(dirs, 
+
+
+copy_files_to_em_unnested <- function(dir, 
                              df,
                              new_filename){
-  
-  rootname <- unique(dirname(dirs))
-  dirs <- grep(new_filename, dirs, value = TRUE, invert = TRUE)
+  dirs <- list.dirs(grep("models", list.dirs(dir, recursive = FALSE), value = TRUE), recursive = FALSE)
+  # dirs <- grep(new_filename, dirs, value = TRUE, invert = TRUE)
   
   for(m in 1:length(dirs)){
     model_name <- basename(dirs[m])
@@ -33,7 +35,7 @@ copy_files_to_em_unnested <- function(dirs,
       iter_name <- gsub("om", "iteration", basename(om_folders[o]))
       
       for(e in 1:length(df$em_names)){
-        iter_folder <- file.path(rootname, new_filename, paste0(model_name,"-em_", df$em_names[e], "-", iter_name))
+        iter_folder <- file.path(dir, new_filename, paste0(model_name,"-em_", df$em_names[e], "-", iter_name))
         dir.create(iter_folder, showWarnings = FALSE, recursive = TRUE)
         # copy bootstrap file to respective em/iteration folder and rename to data.ss
         copy_data_boot <-list.files(om_folders[o], pattern = "data_boot*", full.names = TRUE)

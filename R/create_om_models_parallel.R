@@ -1,29 +1,32 @@
-#' Create the OM Models
+#' Create the OM Models (in Parallel)
 #'
-#' @param model_dir The filepath for the directory of the model that you would 
-#' like to run simulations for. For running the stock synthesis test models this
-#' should be one of the test model folders.
+#' @param dir The filepath for the working directory that has a folder named "models" 
+#' with your model folders in it. These are the models that you would like to 
+#' run simulations for. For running the stock synthesis test models this should 
+#' be one of the test model/models folders.
 #' @param iterations The number of simulation iterations that you would like to 
 #' run which will run the OM that amount of times to get a bootstrap file from 
 #' each run.
 #' @param exe_filepath The filepath to where your stock synthesis executable is
 #' located. This will not check if the file is in your path.
 #'
-#' @return
 #' @export
+#' 
 #' @import parallel
 #' @import furrr
+#' @import future
 #' @import r4ss
 #'
-#' @examples
 
 # could put options for a df to change om options - may be needed down the road.
 # the om models are the iterations that will go in the ems
 
 
-create_om_models_parallel <- function(model_dir,
+create_om_models_parallel <- function(dir,
                                       iterations = 1,
                                       exe_filepath) {
+  model_dir <- list.dirs(grep("models", list.dirs(dir, recursive = FALSE), value = TRUE), recursive = FALSE)
+  
   ncores <- parallel::detectCores()
   future::plan(multisession, workers = ncores)
   
