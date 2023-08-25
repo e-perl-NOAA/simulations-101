@@ -1,5 +1,5 @@
 #install.packages("pak") # if needed
-#pak::pkg_install("r4ss/r4ss")
+pak::pkg_install("r4ss/r4ss")
 library(furrr)
 library(r4ss)
   
@@ -101,6 +101,7 @@ start_time <- Sys.time()
 get_all_results(dir = dir, new_filename = "unnested_iterations")
 stop_time <- Sys.time()
 time_get_results <- stop_time - start_time
+
 
 # Need to figure out output
 # left off:
