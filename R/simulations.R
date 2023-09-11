@@ -96,7 +96,7 @@ stop_time <- Sys.time()
 time_unnested_parallel_run_iter <- stop_time - start_time
 # This takes 47.97 min
 
-# Get results
+# Get results from EMs and OMs
 start_time <- Sys.time()
 get_all_results(dir = dir, new_filename = "unnested_iterations")
 stop_time <- Sys.time()
@@ -107,6 +107,7 @@ results_ts <- read.csv(file.path(dir, "unnested_iterations","results_timeseries.
 #### STILL TO WORK ON ####
 # Get results from OMs
 # Other results & plotting?
+# Put together function or workflow to do all things
 
 
 
