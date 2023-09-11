@@ -103,9 +103,10 @@ stop_time <- Sys.time()
 time_get_results <- stop_time - start_time
 # This takes 1.24 min
 
-results_ts <- read.csv(file.path(dir, "unnested_iterations","results_timeseries.csv"))
+results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
+scalar_re <- ss3sim::calculate_re()
 #### STILL TO WORK ON ####
-# Get results from OMs, maybe in parallel?
+# Scalar results don't look like ss3sim scalar results, missing lots of columns, need to fix
 # Other results & plotting?
 # Put together function or workflow to do all things
 
