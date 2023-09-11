@@ -4,6 +4,7 @@
 #' @param new_filename
 #'
 #' @import purrr
+#' @import furrr
 #' @import utils
 #' @import ss3sim
 #' @import r4ss
@@ -14,14 +15,17 @@
 
 get_all_results <- function(dir, new_filename){
   
+  ncores <- parallel::detectCores()
+  future::plan(multisession, workers = ncores)
+  
   scalar_all <- data.frame()
   timeseries_all <- data.frame()
   derived_all <- data.frame()
-
+  
   #### Get EM Results ####
   model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
   
-  results_em <- purrr::map(model_dir, ~ get_results_em(
+  results_em <- furrr::future_map(model_dir, ~ get_results_em(
     model_dir = .x,
     new_filename = new_filename))
   
@@ -30,7 +34,7 @@ get_all_results <- function(dir, new_filename){
   #### Get OM Results ####
   om_folders <- grep("om", grep("models",list.dirs(dir, recursive = TRUE), value = TRUE), value = TRUE)
   
-  results_om <- purrr::map(om_folders, ~ get_results_om(
+  results_om <- furrr::future_map(om_folders, ~ get_results_om(
     om_folders = .x))
   
   all_om_df <- do.call(rbind, results_om)
