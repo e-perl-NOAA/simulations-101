@@ -33,7 +33,7 @@ unnested_change_run_em_parallel <- function(dir,
   model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
 
   # setup parallel  
-  ncores <- parallel::detectCores()
+  ncores <- parallel::detectCores() - 1 
   future::plan(multisession, workers = ncores)
   results <- furrr::future_map(model_dir, ~ run_iters(
     model_dir = .x,

@@ -94,7 +94,8 @@ unnested_change_run_em_parallel(dir = dir,
                                 new_filename = "unnested_iterations")
 stop_time <- Sys.time()
 time_unnested_parallel_run_iter <- stop_time - start_time
-# This takes 47.97 min
+# This takes 47.97 min - 180 models; first 2 iters of each scenario run twice
+# 180 + 36 = 216
 
 # Get results from EMs and OMs in parallel
 start_time <- Sys.time()

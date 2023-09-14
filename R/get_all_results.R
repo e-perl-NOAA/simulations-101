@@ -15,7 +15,7 @@
 
 get_all_results <- function(dir, new_filename){
   
-  ncores <- parallel::detectCores()
+  ncores <- parallel::detectCores() - 1
   future::plan(multisession, workers = ncores)
   
   scalar_all <- data.frame()
@@ -115,13 +115,9 @@ get_results_om <- function(om_folders){
   scenario <- "om"
   iteration <- gsub(".*om_", "", om_folders)
   
-  forecastTF <- ifelse(
-    file.size(file.path(om_folders, "Forecast-report.sso")) %in% c(0, NA),
-    FALSE, TRUE
-  )
-  
+  # Don't read forecast report for OMs, just EMs
   report <- r4ss::SS_output(om_folders,
-                            forecast = forecastTF,
+                            forecast = FALSE,
                             covar = FALSE,
                             verbose = FALSE,
                             warn = FALSE,
@@ -136,6 +132,30 @@ get_results_om <- function(om_folders){
   scalar$model <- timeseries$model <- derived$model <- model
   scalar$scenario <- timeseries$scenarios <- derived$scenarios <- scenario
   scalar$iteration <- timeseries$iteration <- derived$iteration <- iteration
+  
+  # Change values that are meaningless in OMs
+  scalar$max_grad <- NA
+  scalar$params_on_bound <- NA
+  scalar$params_stuck_low <- NA
+  scalar$params_stuf_high <- NA
+  
+  # Other calculations to do
+  scalar$hessian <- file.exists(file.path(om_folders, "admodel.cov"))
+  
+  # The number of iterations for the run is only in ss_summary.sso and
+  # CumReport.sso for some reason.
+  if (!file.exists(file.path(om_folders, "ss_summary.sso"))) {
+    Niterations <- NA
+  } else {
+    sumrep <- readLines(file.path(om_folders, "ss_summary.sso"), n = 10)
+    tmp <- grep("N_iterations: ", sumrep)
+    if (length(tmp) == 0) {
+      scalar$Niterations <- NA
+    } else {
+      scalar$Niterations <-
+        as.numeric(strsplit(sumrep[tmp[1]], split = "N_iterations: ")[[1]][2])
+    }
+  }
   
   out <- list()
   out$scalar <- scalar

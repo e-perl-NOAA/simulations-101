@@ -27,7 +27,7 @@ create_om_models_parallel <- function(dir,
                                       exe_filepath) {
   model_dir <- list.dirs(grep("models", list.dirs(dir, recursive = FALSE), value = TRUE), recursive = FALSE)
   
-  ncores <- parallel::detectCores()
+  ncores <- parallel::detectCores() - 1
   future::plan(multisession, workers = ncores)
   
   furrr::future_map(model_dir, function(m) {
