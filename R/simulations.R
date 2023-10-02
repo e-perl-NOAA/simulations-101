@@ -1,9 +1,12 @@
 #install.packages("pak") # if needed
-# pak::pkg_install("r4ss/r4ss")
+pak::pkg_install("r4ss/r4ss")
 library(furrr)
 library(r4ss)
-  
+library(future)
+library(parallel)
+
 dir <- getwd()
+
 # dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
 # 
 # dirs <- subset(dirs, !grepl(dirs, pattern = ".Rproj.user"))
@@ -38,7 +41,8 @@ create_om_models_parallel(dir = dir,
                           exe_filepath = file.path(dir, "ss_win.exe"))
 stop_time <- Sys.time()
 parallel_time <- stop_time - start_time
-# 7.59 min
+# 7.59 min on VM
+# 1.89 min on desktop
 
 # Copy the bootstrap files from the om iterations and the configuration files 
 # from the overall directory to the em > iteration file folders
@@ -51,6 +55,8 @@ copy_files_to_em_unnested(dir = dir,
                  new_filename = "unnested_iterations")
 stop_time <- Sys.time()
 copy_files_time <- stop_time - start_time
+#    min on VM
+# 7.75 sec on desktop
 
 # Model folders in parallel
 # start_time <- Sys.time()
@@ -94,15 +100,27 @@ unnested_change_run_em_parallel(dir = dir,
                                 new_filename = "unnested_iterations")
 stop_time <- Sys.time()
 time_unnested_parallel_run_iter <- stop_time - start_time
-# This takes 47.97 min - 180 models; first 2 iters of each scenario run twice
-# 180 + 36 = 216
+# 180 models; first 2 iters of each scenario run twice (180 + 36 = 216 total model runs)
+# This takes 47.97 min on VM 
+# This takes 1 hr 59 min on desktop
+
+model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
+model_run_completed <- function(.x){
+files <- list.files(file.path(dir, "unnested_iterations", .x))
+report_in_files <- grepl(list.files(files), pattern = "Report.sso")
+model <- .x
+df <- data.frame(model, report_in_files)
+names(df) < c("model", "report_in_files")
+}
+report.all <- do.call(rbind, model_run)
 
 # Get results from EMs and OMs in parallel
 start_time <- Sys.time()
 get_all_results(dir = dir, new_filename = "unnested_iterations")
 stop_time <- Sys.time()
 time_get_results <- stop_time - start_time
-# This takes 1.24 min
+# This takes 1.24 min on VM
+# This takes      min on desktop
 
 results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
 scalar_re <- ss3sim::calculate_re()

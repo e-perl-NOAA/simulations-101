@@ -38,7 +38,7 @@ create_om_models_parallel <- function(dir,
       
       dir.create(to, showWarnings = FALSE, recursive = TRUE)
       file.copy(files, to, recursive = FALSE)
-      
+
       inputs <- r4ss::SS_read(dir = to)
       inputs$start$N_bootstraps <- 3
       inputs$ctl$max_bias_adj <- -1
