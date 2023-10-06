@@ -27,9 +27,10 @@ copy_files_to_em_unnested <- function(dir,
     om_folders <- grep("om_", list.dirs(dirs[m], full.names = TRUE, recursive = FALSE), value = TRUE)
     
     # get model starter file names for em
+    run(dir = dirs[m], exe = file.path(getwd(), "ss_win"), extras = "-nohess -stopph 0", skipfinished = FALSE)
     inputs <- r4ss::SS_read(dir = dirs[m])
     
-    starter_files <- paste0(inputs$start$ctlfile, "|forecast.ss|starter.ss|wtatage.ss")
+    starter_files <- paste0(paste0(inputs$start$ctlfile,"_new"), "|forecast.ss_new|starter.ss_new|wtatage.ss_new")
     
     for(o in 1:length(om_folders)){
       iter_name <- gsub("om", "iteration", basename(om_folders[o]))
@@ -46,6 +47,7 @@ copy_files_to_em_unnested <- function(dir,
         # copy starter files
         copy_starter_files <- list.files(dirs[m], pattern = starter_files, full.names = TRUE)
         file.copy(copy_starter_files, iter_folder, recursive = FALSE, overwrite = TRUE)
+        file.rename(list.files(iter_folder, pattern = starter_files, full.names = TRUE), stringr::str_replace(list.files(iter_folder, pattern = starter_files, full.names = TRUE), pattern = "_new", ""))
       }
     }
   }
