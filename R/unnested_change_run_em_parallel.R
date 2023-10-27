@@ -31,7 +31,9 @@ unnested_change_run_em_parallel <- function(dir,
   # message("Done copying files over.")
   
   model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
-
+  model_dir <- model_dir[!grepl("plots", model_dir)]
+  model_dir <- model_dir[!grepl("-om_", model_dir)]
+  
   # setup parallel  
   ncores <- parallel::detectCores() - 1 
   future::plan(multisession, workers = ncores)

@@ -33,7 +33,7 @@ create_om_models_parallel <- function(dir,
   furrr::future_map(model_dir, function(m) {
     for (i in 1:iterations) {
       from <- normalizePath(m, mustWork = TRUE)
-      to <- file.path(from, paste0("om_", i))
+      to <- file.path(from, paste0(basename(m),"-om_", i))
       files <- list.files(from, pattern = ".SS$|.ss$|.dat|.ctl", full.names = TRUE)
       
       dir.create(to, showWarnings = FALSE, recursive = TRUE)

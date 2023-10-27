@@ -115,20 +115,42 @@ names(df) < c("model", "report_in_files")
 report.all <- do.call(rbind, model_run)
 
 # Get results from EMs and OMs in parallel
-start_time <- Sys.time()
-get_all_results(dir = dir, new_filename = "unnested_iterations")
-stop_time <- Sys.time()
-time_get_results <- stop_time - start_time
+# start_time <- Sys.time()
+# get_all_results(dir = dir, new_filename = "unnested_iterations")
+# stop_time <- Sys.time()
+# time_get_results <- stop_time - start_time
 # This takes 1.24 min on VM
 # This takes      min on desktop
 
-results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
-scalar_re <- ss3sim::calculate_re()
+# results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
+# scalar_re <- ss3sim::calculate_re()
 #### STILL TO WORK ON ####
 # Scalar results don't look like ss3sim scalar results, missing lots of columns, need to fix
 # Other results & plotting?
 # Put together function or workflow to do all things
 
+# Get results
+start_time <- Sys.time()
+get_sims_output(dir = dir, 
+                new_filename = "unnested_iterations",
+                file_copy = TRUE)
+stop_time <- Sys.time()
+parallel_time <- stop_time - start_time
 
 
+convergence <- data.frame()
 
+for(m in 1:length(model_dir)){
+convergence_fill <- data.frame(
+  model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
+  iteration = paste0("iteration_",gsub(".*-iteration_","",basename(model_dir[m]))),
+  model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
+  model_converged2 = 
+    if(file.exists(file.path(model_dir[m], "covar.sso"))){
+       any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))
+      }else{
+        "No Convergence"
+      }
+)
+convergence <- rbind(convergence, convergence_fill)
+}
