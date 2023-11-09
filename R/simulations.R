@@ -4,9 +4,11 @@ library(furrr)
 library(r4ss)
 library(future)
 library(parallel)
+library(ggplot2)
+library(ggpubr)
 
 dir <- getwd()
-
+new_filename <- "unnested_iterations"
 # dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
 # 
 # dirs <- subset(dirs, !grepl(dirs, pattern = ".Rproj.user"))
@@ -24,6 +26,7 @@ em_df<- data.frame(
   var_change = c("do_recdev", "do_recdev", "do_recdev"),
   new_val = c(1, 1, 2))
 
+df <- em_df
 
 # These will become the "iterations" in the ems
 # probably need to make this run in parallel too
@@ -139,7 +142,9 @@ parallel_time <- stop_time - start_time
 
 
 convergence <- data.frame()
-
+model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
+model_dir <- model_dir[!grepl("plots", model_dir)]
+model_dir <- model_dir[!grepl("-om_", model_dir)]
 for(m in 1:length(model_dir)){
 convergence_fill <- data.frame(
   model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
@@ -147,10 +152,11 @@ convergence_fill <- data.frame(
   model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
   model_converged2 = 
     if(file.exists(file.path(model_dir[m], "covar.sso"))){
-       any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))
-      }else{
-        "No Convergence"
-      }
+       !any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))}
 )
 convergence <- rbind(convergence, convergence_fill)
 }
+convergence_new <- convergence |>
+  dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
+                                      model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
+  dplyr::select(-model_converged1, -model_converged2)
