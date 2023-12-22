@@ -1,11 +1,12 @@
-#install.packages("pak") # if needed
-pak::pkg_install("r4ss/r4ss")
+# install.packages("pak") # if needed
+# pak::pkg_install("r4ss/r4ss")
 library(furrr)
 library(r4ss)
 library(future)
 library(parallel)
 library(ggplot2)
 library(ggpubr)
+library(ggtext)
 
 dir <- getwd()
 new_filename <- "unnested_iterations"
