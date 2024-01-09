@@ -27,27 +27,34 @@ get_sims_output <- function(dir = dir,
   
   #now get output
   sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
-  model_names <- unique(gsub("-.*","",basename(sims_models)))
+  model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
 
   ncores <- parallel::detectCores() - 1 
   future::plan(multisession, workers = ncores)
 
-  sims_results <- furrr::future_map(model_names, ~run_plot_compars(
+  sims_results <- furrr::future_map(model_names[3:5], ~run_compars(
     model_names = .x,
     dir = dir,
     new_filename = new_filename,
     sims_models = sims_models
   ))
+  
+  names(sims_results) <- model_names[3:5]
+  
+  sims_plots <- furrr::future_map(sims_results, var = vars)
+  
+  
+  text <- 
   }
 
 
-run_plot_compars <- function(model_names,
-                             dir,
-                             new_filename,
-                             sims_models
-                             ){
+run_compars <- function(model_names,
+                        dir,
+                        new_filename,
+                        sims_models
+                        ){
   # Get summary output
-  model_names <- model_names[1]
+  model_names <- paste0(model_names,"-")
   plot_path <- file.path(dir, new_filename, paste0(model_names,"_plots"))
   plot_path_present <- grep(plot_path, sims_models, value =TRUE)
   if(is.null(plot_path_present)){
@@ -58,29 +65,28 @@ run_plot_compars <- function(model_names,
   sims_output <- SSgetoutput(dirvec = model_match)
   sims_summary <- SSsummarize(sims_output)
   
-  model_labels <- gsub(paste0(model_names,"-"),"", basename(model_match))
+  model_labels <- gsub(model_names,"", basename(model_match))
   model_labels <- gsub("iteration","i", model_labels)
   sims_summary$modelnames <- model_labels
   
   # Put correct names for data (not replist #)
   sims_data_frames <- sims_summary[sapply(sims_summary, class) == "data.frame"]
-  
   for(i in 1:length(sims_data_frames)){
-    if(length(names(sims_data_frames[[i]])) %in% c(40,41,42,43)){
-      names(sims_data_frames[[i]])[1:40] <- model_labels
+    # if(length(names(sims_data_frames[[i]])) %in% c(40,41,42,43)){
+    if(length(names(sims_data_frames[[i]])) %/% 40  != 0 & length(names(sims_data_frames[[i]])) %% 40 < 4){
+      max_length <- length(names(sims_data_frames[[i]])) - length(names(sims_data_frames[[i]])) %% 40
+      names(sims_data_frames[[i]])[1:max_length] <- model_labels
     }
     # there are 3 data frames that don't have replist# as column names
     else{
       colnames(sims_data_frames[[i]])[colnames(sims_data_frames[[i]]) %in% c("name","model")] = "model"
-      
       count_number <- sims_data_frames[[i]] |>
         dplyr::count(model) |>
         dplyr::distinct(n)
       sims_data_frames[[i]]$model <- rep(model_labels, each = count_number[[1]])
     }
   }
-  
-  
+}
   
   # For SpawnBio Specifically, need to figure out how to do it for all
   # Get OM medians 
@@ -156,129 +162,126 @@ run_plot_compars <- function(model_names,
     # For SpawnBio Specifically, need to figure out how to do it for all
     # Get OM medians 
     var <- "recdevs"
+ create_sims_plots(var, sims_data_frames){
+   model_name <- names(sims_data_frames)
+   sims_var <- sims_data_frames[[var]]
+   sims_var$om_Median <- apply(sims_var[, grepl("om_", colnames(sims_var))], 1, median)
     
-    sims_var <- sims_data_frames[[var]]
-    sims_var$om_Median <- apply(sims_var[, grepl("om_", colnames(sims_var))], 1, median)
+   # Get EM 95% quantile, 5% quantile, median
+   em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_var), value = TRUE)))
+   for(i in 1:length(em_names)){
+     # median
+     name_i <- paste0(em_names[i],"_Median")
+     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, median)
+     #95% quantile
+     name_i <- paste0(em_names[i],"_95%")
+     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.95)
+     #5% quantile
+     name_i <- paste0(em_names[i],"_5%")
+     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.05)
+   }
+   
+   # Reshape
+   sims_var_new <- sims_var[,41:ncol(sims_var)]
+   sims_var_new <- sims_var_new |>
+     tidyr::pivot_longer(3:ncol(sims_var_new), names_to = "model_type", values_to = "value") |>
+     tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
+     tidyr::pivot_wider(names_from = Stat, values_from = value)
     
-    # Get EM 95% quantile, 5% quantile, median
-    em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_var), value = TRUE)))
-    for(i in 1:length(em_names)){
-      # median
-      name_i <- paste0(em_names[i],"_Median")
-      sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, median)
-      #95% quantile
-      name_i <- paste0(em_names[i],"_95%")
-      sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.95)
-      #5% quantile
-      name_i <- paste0(em_names[i],"_5%")
-      sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.05)
-    }
+   # Plot
+   # if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
+   sims_var_om <- sims_var_new |>
+     dplyr::filter(Model== "om") |>
+     dplyr::select(-Model)
     
-    # Reshape
-    sims_var_new <- sims_var[,41:ncol(sims_var)]
-    sims_var_new <- sims_var_new |>
-      tidyr::pivot_longer(3:ncol(sims_var_new), names_to = "model_type", values_to = "value") |>
-      tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
-      tidyr::pivot_wider(names_from = Stat, values_from = value)
+   sims_var_em <- sims_var_new |>
+     dplyr::filter(Model %in% em_names) |>
+     dplyr::mutate(Model = gsub("^[^_]*_","", Model))
     
-    # Plot
-    if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
-    sims_var_om <- sims_var_new |>
-      dplyr::filter(Model== "om") |>
-      dplyr::select(-Model)
-    
-    sims_var_em <- sims_var_new |>
-      dplyr::filter(Model %in% em_names) |>
-      dplyr::mutate(Model = gsub("^[^_]*_","", Model))
-    
-    df <- sims_var_em |>
-      dplyr::group_by(Model) |>
-      mutate(max_Yr = max(Yr)) |>
-      dplyr::ungroup() |>
-      dplyr::filter(Yr == max_Yr) |>
-      mutate(median = `95%` *1.15,
-             Yr = Yr - 5,
-             label = "95% quantile")
-    
-    ggplot2::ggplot(sims_var_em, aes(Yr, median)) +
-      facet_wrap(~Model, nrow = n, ncol = n, scales = "free") +
-      geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), alpha = 0.3, linetype = 0, show.legend = FALSE) +
-      geom_line(linewidth = 1.2,  color = "#00797F") +
-      geom_line(data = sims_var_om, linewidth = 1.2, linetype = 2, color = "#323C46") +
-      scale_fill_manual("", values = "#1f1f1f") +
-      theme_classic() +
-      theme(
-        strip.background = element_rect(fill = "#00797F", color = "#323C46"),
-        strip.text = element_textbox(
-          size = 12,
-          color = "white"),
-        plot.title.position = "plot",
-        plot.title = element_markdown(size = 11, lineheight = 1.2)
-      ) +
-      geom_text(
-        data = df,
-        aes(label = label),
-        color = "#1f1f1f",
-        show.legend = FALSE
-      ) +
-      labs(title = "<span style = 'font-size:14pt;'>SSB for <span style = 'color:#00797F;'>EM Median</span>,
-           <span style = 'color:#323C46;'>OM Median</span>, and <span style = 'color:#1f1f1f;'>EM 95% quantile</span> for recdev option 1, 2, and 3",
-           y = "SSB",
-           x = "Year")
-    
+   sims_plot_output <- ggplot2::ggplot(sims_var_em, aes(Yr, median)) +
+     facet_wrap(~Model, nrow = 1, ncol = length, scales = "free") +
+     geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), linetype = 0, show.legend = FALSE) +
+     geom_line(linewidth = 1,  color = "#007582") +
+     geom_line(data = sims_var_om, linewidth = 1.2, linetype = 2, color = "#002364") +
+     scale_fill_manual("", values = "#d3d3d3") +
+     theme_classic() +
+     theme(
+       strip.background = element_rect(fill = "#007582", color = "#002364"),
+       strip.text = element_textbox(size = 12, color = "white"),
+       plot.title.position = "plot",
+       plot.title = element_markdown(size = 11, lineheight = 1.2)
+     ) +
+     labs(title = paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
+          <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>"),
+          x = "Year",
+          y = stringr::str_to_title(var))
+ }
+ 
+ 
+    "#0085CA"
+    "#003087"
+    "#002364"
+    "#5145b9"
+    "#db6015"
+    "#4a8b2c"
+    "#D02C2F"
+    "#007582"
+    "#003087"
+    "#002364"
   # Attempt to figure out how to do it for all
-  # Get OM medians 
-  get_var_plot <- function(var, sims_data_frames){
-    
-  dat <- which(names(sims_data_frames) == var)
-  sims_data_frames[[dat]]$om_median <- apply(sims_data_frames[[dat]][, grepl("om_", colnames(sims_data_frames[[dat]]))], 1, median)
-  
-  # Get EM 95% quantile, 5% quantile, median
-  em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_data_frames[[dat]]), value = TRUE)))
-  for(i in 1:length(em_names)){
-    # median
-    name_i <- paste0(em_names[i],"_median")
-    sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, median)
-    #95% quantile
-    name_i <- paste0(em_names[i],"_95%")
-    sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, quantile, 0.95)
-    #5% quantile
-    name_i <- paste0(em_names[i],"_5%")
-    sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, quantile, 0.05)
-  }
+  # Get OM medians
+  # var <- "recdevs"
+  # get_var_plot <- function(var, sims_data_frames){
+  #   
+  # dat <- which(names(sims_data_frames) == var)
+  # sims_data_frames[[dat]]$om_median <- apply(sims_data_frames[[dat]][, grepl("om_", colnames(sims_data_frames[[dat]]))], 1, median)
+  # 
+  # # Get EM 95% quantile, 5% quantile, median
+  # em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_data_frames[[dat]]), value = TRUE)))
+  # for(i in 1:length(em_names)){
+  #   # median
+  #   name_i <- paste0(em_names[i],"_median")
+  #   sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, median)
+  #   #95% quantile
+  #   name_i <- paste0(em_names[i],"_95%")
+  #   sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, quantile, 0.95)
+  #   #5% quantile
+  #   name_i <- paste0(em_names[i],"_5%")
+  #   sims_data_frames[[dat]][, name_i] <- apply(sims_data_frames[[dat]][, grepl(em_names[i], colnames(sims_data_frames[[dat]]))], 1, quantile, 0.05)
+  # }
   
   # Reshape
-  dat_new <- sims_data_frames[[dat]][,41:ncol(sims_data_frames[[dat]])]
-  dat_new <- dat |>
-    tidyr::pivot_longer(3:ncol(dat), names_to = "model_type", values_to = "value") |>
-    tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
-    tidyr::pivot_wider(names_from = Stat, values_from = value)
-  
-  # Plot
-  plotList <- lapply(
-    em_names,
-    function(i, dat_new, var){
-      dat_i <- dat_new |>
-        dplyr::filter(Model %in% c(i, "om")) |>
-        dplyr::mutate(Model = gsub("_.*","", Model))
-      
-      x <- ggplot2::ggplot(dat_i, aes(Yr, median, colour = Model, linetype = Model)) +
-        geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), alpha = 0.3, linetype = 0) +
-        geom_line(size = 1.2) +
-        scale_colour_manual("Median", values = c("#00797F","#323C46")) +
-        scale_linetype_manual("Median", values = c("solid", "dashed")) +
-        scale_fill_manual("", values = "grey12") +
-        labs(title = gsub("em_", "", i), y = var, x = "Year") + #need to change this so it's more modular for not just recdev
-        theme_classic()
-      x
-    }, spawn_bio_new, var
-  )
-  if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
-  allplots <- ggarrange(plotlist = plotList,
-                        ncol = n, nrow = n)
-  allplots
-  
-  }
+  # dat_filt <- sims_data_frames[[dat]][,41:ncol(sims_data_frames[[dat]])]
+  # dat_new <- dat_filt|>
+  #   tidyr::pivot_longer(cols = 3:ncol(dat_filt), names_to = "model_type", values_to = "value") |>
+  #   tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
+  #   tidyr::pivot_wider(names_from = Stat, values_from = value)
+  # 
+  # # Plot
+  # plotList <- lapply(
+  #   em_names,
+  #   function(i, dat_new, var){
+  #     dat_i <- dat_new |>
+  #       dplyr::filter(Model %in% c(i, "om")) |>
+  #       dplyr::mutate(Model = gsub("_.*","", Model))
+  #     
+  #     x <- ggplot2::ggplot(dat_i, aes(Yr, median, colour = Model, linetype = Model)) +
+  #       geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), alpha = 0.3, linetype = 0) +
+  #       geom_line(size = 1) +
+  #       scale_colour_manual("Median", values = c("#00797F","#323C46")) +
+  #       scale_linetype_manual("Median", values = c("solid", "dashed")) +
+  #       scale_fill_manual("", values = "grey12") +
+  #       labs(title = gsub("em_", "", i), y = var, x = "Year") + #need to change this so it's more modular for not just recdev
+  #       theme_classic()
+  #     x
+  #   }, dat_new, var
+  # )
+  # if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
+  # allplots <- ggarrange(plotlist = plotList,
+  #                       ncol = n, nrow = n)
+  # allplots
+  # 
+  # }
   
   
   sims_summary$recruitsUpper
