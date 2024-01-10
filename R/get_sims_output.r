@@ -41,13 +41,25 @@ get_sims_output <- function(dir = dir,
   
   names(sims_results) <- model_names[3:5]
   
-  sims_plots <- furrr::future_map(sims_results, var = vars)
+  sims_plots_by_var <- furrr::future_map(sims_results, ~sims_plots(
+    sims_data_frames = .x,
+    var = vars))
   
-  
-  text <- 
+  text <- paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
+          <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>")
+  text.p <- ggpubr::ggparagraph(text = text)
+  do.call(ggpubr::ggarrange, c(sims_plots_by_var, list(labels = gsub("_"," ", model_names[3:5])),
+                               nrow = length(model_names[3:5])))
   }
 
-
+### need to figure this out by var too
+plot_by_var <- function(){
+  for(i in vars){
+  furrr::future_map(sims_results, ~sims_plots(
+    sims_data_frames = .x,
+    var = vars[i]))
+  }
+}
 run_compars <- function(model_names,
                         dir,
                         new_filename,
@@ -88,81 +100,8 @@ run_compars <- function(model_names,
   }
 }
   
-  # For SpawnBio Specifically, need to figure out how to do it for all
-  # Get OM medians 
-  sims_data_frames$SpawnBio$om_median <- apply(sims_data_frames$SpawnBio[, grepl("om_", colnames(sims_data_frames$SpawnBio))], 1, median)
-  
-  # Get EM 95% quantile, 5% quantile, median
-  em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_data_frames$SpawnBio), value = TRUE)))
-  for(i in 1:length(em_names)){
-    # median
-    name_i <- paste0(em_names[i],"_Median")
-    sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, median)
-    #95% quantile
-    name_i <- paste0(em_names[i],"_95%")
-    sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, quantile, 0.95)
-    #5% quantile
-    name_i <- paste0(em_names[i],"_5%")
-    sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, quantile, 0.05)
-  }
-  
-  # Reshape
-  spawn_bio_new <- sims_data_frames$SpawnBio[,41:ncol(sims_data_frames$SpawnBio)]
-  spawn_bio_new <- spawn_bio_new |>
-    tidyr::pivot_longer(3:ncol(spawn_bio_new), names_to = "model_type", values_to = "value") |>
-    tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
-    tidyr::pivot_wider(names_from = Stat, values_from = value)
-  
-  # Plot
-    if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
-    spawn_bio_om <- spawn_bio_new |>
-      dplyr::filter(Model== "om") |>
-      dplyr::select(-Model)
-      
-    spawn_bio_em <- spawn_bio_new |>
-      dplyr::filter(Model %in% em_names) |>
-      dplyr::mutate(Model = gsub("^[^_]*_","", Model))
-    
-    df <- spawn_bio_em |>
-        dplyr::group_by(Model) |>
-        mutate(max_Yr = max(Yr)) |>
-        dplyr::ungroup() |>
-        dplyr::filter(Yr == max_Yr) |>
-        mutate(median = `95%` *1.15,
-               Yr = Yr - 5,
-               label = "95% quantile")
-    
-    ggplot2::ggplot(spawn_bio_em, aes(Yr, median)) +
-      facet_wrap(~Model, nrow = n, ncol = n, scales = "free") +
-      geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), alpha = 0.3, linetype = 0, show.legend = FALSE) +
-      geom_line(linewidth = 1.2,  color = "#00797F") +
-      geom_line(data = spawn_bio_om, linewidth = 1.2, linetype = 2, color = "#323C46") +
-      scale_fill_manual("", values = "#1f1f1f") +
-      theme_classic() +
-      theme(
-        strip.background = element_rect(fill = "#00797F", color = "#323C46"),
-        strip.text = element_textbox(
-          size = 12,
-          color = "white"),
-        plot.title.position = "plot",
-        plot.title = element_markdown(size = 11, lineheight = 1.2)
-      ) +
-      geom_text(
-        data = df,
-        aes(label = label),
-        color = "#1f1f1f",
-        show.legend = FALSE
-      ) +
-      labs(title = "<span style = 'font-size:14pt;'>SSB for <span style = 'color:#00797F;'>EM Median</span>,
-           <span style = 'color:#323C46;'>OM Median</span>, and <span style = 'color:#1f1f1f;'>EM 95% quantile</span> for recdev option 1, 2, and 3",
-           y = "SSB",
-           x = "Year")
-
-    
-    # For SpawnBio Specifically, need to figure out how to do it for all
-    # Get OM medians 
-    var <- "recdevs"
- create_sims_plots(var, sims_data_frames){
+ var <- "recdevs"
+ create_sims_plots <- function(var, sims_data_frames){
    model_name <- names(sims_data_frames)
    sims_var <- sims_data_frames[[var]]
    sims_var$om_Median <- apply(sims_var[, grepl("om_", colnames(sims_var))], 1, median)
@@ -211,12 +150,15 @@ run_compars <- function(model_names,
        plot.title.position = "plot",
        plot.title = element_markdown(size = 11, lineheight = 1.2)
      ) +
-     labs(title = paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
-          <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>"),
-          x = "Year",
-          y = stringr::str_to_title(var))
+     labs(
+       # title = paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
+       #    <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>"),
+       x = "Year",
+       y = stringr::str_to_title(var))
+   
+   sims_plot_output
  }
- 
+
  
     "#0085CA"
     "#003087"
@@ -228,6 +170,83 @@ run_compars <- function(model_names,
     "#007582"
     "#003087"
     "#002364"
+    
+    
+    
+    
+    # For SpawnBio Specifically, need to figure out how to do it for all
+    # Get OM medians 
+    sims_data_frames$SpawnBio$om_median <- apply(sims_data_frames$SpawnBio[, grepl("om_", colnames(sims_data_frames$SpawnBio))], 1, median)
+    
+    # Get EM 95% quantile, 5% quantile, median
+    em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_data_frames$SpawnBio), value = TRUE)))
+    for(i in 1:length(em_names)){
+      # median
+      name_i <- paste0(em_names[i],"_Median")
+      sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, median)
+      #95% quantile
+      name_i <- paste0(em_names[i],"_95%")
+      sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, quantile, 0.95)
+      #5% quantile
+      name_i <- paste0(em_names[i],"_5%")
+      sims_data_frames$SpawnBio[, name_i] <- apply(sims_data_frames$SpawnBio[, grepl(em_names[i], colnames(sims_data_frames$SpawnBio))], 1, quantile, 0.05)
+    }
+    
+    # Reshape
+    spawn_bio_new <- sims_data_frames$SpawnBio[,41:ncol(sims_data_frames$SpawnBio)]
+    spawn_bio_new <- spawn_bio_new |>
+      tidyr::pivot_longer(3:ncol(spawn_bio_new), names_to = "model_type", values_to = "value") |>
+      tidyr::separate(model_type, into = c("Model", "Stat"), sep = "_(?=[^_]+$)") |>
+      tidyr::pivot_wider(names_from = Stat, values_from = value)
+    
+    # Plot
+    if(length(em_names) %% 2 != 0){n = (length(em_names)+1)/2}
+    spawn_bio_om <- spawn_bio_new |>
+      dplyr::filter(Model== "om") |>
+      dplyr::select(-Model)
+    
+    spawn_bio_em <- spawn_bio_new |>
+      dplyr::filter(Model %in% em_names) |>
+      dplyr::mutate(Model = gsub("^[^_]*_","", Model))
+    
+    df <- spawn_bio_em |>
+      dplyr::group_by(Model) |>
+      mutate(max_Yr = max(Yr)) |>
+      dplyr::ungroup() |>
+      dplyr::filter(Yr == max_Yr) |>
+      mutate(median = `95%` *1.15,
+             Yr = Yr - 5,
+             label = "95% quantile")
+    
+    ggplot2::ggplot(spawn_bio_em, aes(Yr, median)) +
+      facet_wrap(~Model, nrow = n, ncol = n, scales = "free") +
+      geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), alpha = 0.3, linetype = 0, show.legend = FALSE) +
+      geom_line(linewidth = 1.2,  color = "#00797F") +
+      geom_line(data = spawn_bio_om, linewidth = 1.2, linetype = 2, color = "#323C46") +
+      scale_fill_manual("", values = "#1f1f1f") +
+      theme_classic() +
+      theme(
+        strip.background = element_rect(fill = "#00797F", color = "#323C46"),
+        strip.text = element_textbox(
+          size = 12,
+          color = "white"),
+        plot.title.position = "plot",
+        plot.title = element_markdown(size = 11, lineheight = 1.2)
+      ) +
+      geom_text(
+        data = df,
+        aes(label = label),
+        color = "#1f1f1f",
+        show.legend = FALSE
+      ) +
+      labs(title = "<span style = 'font-size:14pt;'>SSB for <span style = 'color:#00797F;'>EM Median</span>,
+           <span style = 'color:#323C46;'>OM Median</span>, and <span style = 'color:#1f1f1f;'>EM 95% quantile</span> for recdev option 1, 2, and 3",
+           y = "SSB",
+           x = "Year")
+    
+    
+    # For SpawnBio Specifically, need to figure out how to do it for all
+    # Get OM medians 
   # Attempt to figure out how to do it for all
   # Get OM medians
   # var <- "recdevs"
