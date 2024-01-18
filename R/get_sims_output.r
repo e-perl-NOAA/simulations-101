@@ -41,37 +41,65 @@ get_sims_output <- function(dir = dir,
   
   names(sims_results) <- model_names[3:5]
   
-  sims_plots_by_var <- furrr::future_map(sims_results, ~sims_plots(
+  sims_plots_by_var <- furrr::future_map2(sims_results, names(sims_results), ~sims_plots(
     sims_data_frames = .x,
-    var = vars))
+    var = vars,
+    model_name = .y))
   
   text <- paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
           <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>")
   text.p <- ggpubr::ggparagraph(text = text)
   do.call(ggpubr::ggarrange, c(sims_plots_by_var, list(labels = gsub("_"," ", model_names[3:5])),
                                nrow = length(model_names[3:5])))
+  
+  vars <- c("recdevs","SpawnBio","Bratio")
+  plot_by_var(vars = vars, sims_results = sims_results, model_names = model_names[3:5])
   }
 
 ### need to figure this out by var too
-plot_by_var <- function(){
+plot_by_var <- function(vars, sims_results, model_names){
+  plot_list <- list()
   for(i in vars){
-  furrr::future_map(sims_results, ~sims_plots(
-    sims_data_frames = .x,
-    var = vars[i]))
+  
+    ncores <- parallel::detectCores() - 1 
+    future::plan(multisession, workers = ncores)
+    
+    sims_plots_by_var <- furrr::future_map2(sims_results, names(sims_results),~sims_plots(
+      sims_data_frames = .x,
+      var = vars[2],
+      model_name = .y
+      ))
+    sims_plots_by_var
+      
+    text <- paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(vars[2]), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
+            <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>")
+    text.p <- ggpubr::ggparagraph(text = text)
+    
+    
+    combo_plot <- do.call(ggpubr::ggarrange, c(sims_plots_by_var, nrow = length(model_names[3:5])))
+    text <- paste0("<b><span style = 'color:#007582;'>EM Median</span></b> and <b><span style = 'color:#002364;'>OM Median</span></b>. <b>EM 95% quantile is shadded gray.<b>")
+    full_plot <- annotate_figure(combo_plot,
+                    bottom = gridtext::richtext_grob(text))
+    
+    plot_list[[i]] <- full_plot
+    plot_list[[i]]$var <- vars[i]
   }
+  
+    plot_list
 }
+
 run_compars <- function(model_names,
                         dir,
                         new_filename,
                         sims_models
                         ){
   # Get summary output
-  model_names <- paste0(model_names,"-")
   plot_path <- file.path(dir, new_filename, paste0(model_names,"_plots"))
   plot_path_present <- grep(plot_path, sims_models, value =TRUE)
   if(is.null(plot_path_present)){
     dir.create(path = plot_path)
   }
+  model_names <- paste0(model_names,"-")
   model_match <- grep(model_names[!grepl("plots", model_names)][1], sims_models, value = TRUE)
   model_match <-model_match[!grepl("plots", model_match)]
   sims_output <- SSgetoutput(dirvec = model_match)
@@ -98,11 +126,13 @@ run_compars <- function(model_names,
       sims_data_frames[[i]]$model <- rep(model_labels, each = count_number[[1]])
     }
   }
+  sims_data_frames
 }
   
  var <- "recdevs"
- create_sims_plots <- function(var, sims_data_frames){
-   model_name <- names(sims_data_frames)
+ sims_data_frames <- sims_results[[1]]
+ model_name <- names(sims_results)[1]
+ sims_plots <- function(var, sims_data_frames, model_name){
    sims_var <- sims_data_frames[[var]]
    sims_var$om_Median <- apply(sims_var[, grepl("om_", colnames(sims_var))], 1, median)
     
@@ -137,8 +167,8 @@ run_compars <- function(model_names,
      dplyr::filter(Model %in% em_names) |>
      dplyr::mutate(Model = gsub("^[^_]*_","", Model))
     
-   sims_plot_output <- ggplot2::ggplot(sims_var_em, aes(Yr, median)) +
-     facet_wrap(~Model, nrow = 1, ncol = length, scales = "free") +
+   sims_plot_output <- ggplot2::ggplot(sims_var_em, aes(Yr, Median)) +
+     facet_wrap(~Model, nrow = 1, ncol = length(em_names), scales = "free") +
      geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "95% quantile"), linetype = 0, show.legend = FALSE) +
      geom_line(linewidth = 1,  color = "#007582") +
      geom_line(data = sims_var_om, linewidth = 1.2, linetype = 2, color = "#002364") +
@@ -151,8 +181,7 @@ run_compars <- function(model_names,
        plot.title = element_markdown(size = 11, lineheight = 1.2)
      ) +
      labs(
-       # title = paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
-       #    <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>"),
+       title = stringr::str_to_title(gsub("_"," ", model_name)),
        x = "Year",
        y = stringr::str_to_title(var))
    
