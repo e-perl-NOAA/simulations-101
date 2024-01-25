@@ -2,6 +2,10 @@
 #'
 #' @param dir 
 #' @param new_filename
+#' @param df
+#' @param var
+#' @param model_names
+#' @param file_copy
 #'
 #' @import purrr
 #' @import utils
@@ -13,10 +17,20 @@
 #' @export
 #'
 #' 
+
+sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
+model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
+
+get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
+                var = c("recdevs", "Spawnbio", "Bratio", "SPRratio", "Fvalue"),
+                model_names = model_names[3:5])
+
 get_sims_output <- function(dir = dir, 
                             new_filename = "unnested_iterations",
                             file_copy = TRUE,
-                            df = df){
+                            df = df,
+                            var = var,
+                            model_names = NULL){
   
   # copy om model folders over
   if(file_copy == TRUE){
@@ -25,68 +39,54 @@ get_sims_output <- function(dir = dir,
     file.copy(om_files, file.path(dir, new_filename), recursive = TRUE, overwrite = TRUE)
   }
   
-  #now get output
-  sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
-  model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
+  # now get output
+  if(is.null(model_names)){
+    sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
+    model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
+  }
 
   ncores <- parallel::detectCores() - 1 
   future::plan(multisession, workers = ncores)
 
-  sims_results <- furrr::future_map(model_names[3:5], ~run_compars(
+  sims_results <- furrr::future_map(model_names, ~run_compars(
     model_names = .x,
     dir = dir,
     new_filename = new_filename,
     sims_models = sims_models
   ))
   
-  names(sims_results) <- model_names[3:5]
+  names(sims_results) <- model_names
   
-  sims_plots_by_var <- furrr::future_map2(sims_results, names(sims_results), ~sims_plots(
-    sims_data_frames = .x,
-    var = vars,
-    model_name = .y))
+  capture.output(sims_results, file = "sims_results.csv")
   
-  text <- paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(var), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
-          <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>")
-  text.p <- ggpubr::ggparagraph(text = text)
-  do.call(ggpubr::ggarrange, c(sims_plots_by_var, list(labels = gsub("_"," ", model_names[3:5])),
-                               nrow = length(model_names[3:5])))
-  
-  vars <- c("recdevs","SpawnBio","Bratio")
-  plot_by_var(vars = vars, sims_results = sims_results, model_names = model_names[3:5])
-  }
 
-### need to figure this out by var too
-plot_by_var <- function(vars, sims_results, model_names){
+  # Plot all models according to var specified
   plot_list <- list()
-  for(i in vars){
+  for(i in 1:length(var)){
+  sims_plots_by_var <- furrr::future_map2(sims_results, names(sims_results),~sims_plots(
+    sims_data_frames = .x,
+    var = var[i],
+    model_name = .y
+  ))
   
-    ncores <- parallel::detectCores() - 1 
-    future::plan(multisession, workers = ncores)
-    
-    sims_plots_by_var <- furrr::future_map2(sims_results, names(sims_results),~sims_plots(
-      sims_data_frames = .x,
-      var = vars[2],
-      model_name = .y
-      ))
-    sims_plots_by_var
-      
-    text <- paste0("<span style = 'font-size:14pt;'> ", stringr::str_to_title(vars[2]), " options for <b><span style = 'color:#007582;'>EM Median</span></b> and 
-            <b><span style = 'color:#002364;'>OM Median</span></b>. <br> <span style = 'font-size:10pt;'>EM 95% quantile is shadded gray.</span>")
-    text.p <- ggpubr::ggparagraph(text = text)
-    
-    
-    combo_plot <- do.call(ggpubr::ggarrange, c(sims_plots_by_var, nrow = length(model_names[3:5])))
-    text <- paste0("<b><span style = 'color:#007582;'>EM Median</span></b> and <b><span style = 'color:#002364;'>OM Median</span></b>. <b>EM 95% quantile is shadded gray.<b>")
-    full_plot <- annotate_figure(combo_plot,
-                    bottom = gridtext::richtext_grob(text))
-    
-    plot_list[[i]] <- full_plot
-    plot_list[[i]]$var <- vars[i]
+  # Combine all models into one page plot
+  combo_plot <- do.call(ggpubr::ggarrange, c(sims_plots_by_var, nrow = length(model_names))) + theme(plot.margin = margin(0.1,0.1,0.1,0.1, "cm"))
+  text <- paste0("<b><span style = 'color:#007582;'>EM Median</span></b> and <b><span style = 'color:#002364;'>OM Median</span></b>. <b>EM 95% quantile is shadded gray.<b>")
+  full_plot <- annotate_figure(combo_plot,
+                               bottom = gridtext::richtext_grob(text))
+  
+  if(!(file.path(dir, "sims_plots") %in% list.dirs(dir, recursive = FALSE))){
+    dir.create("sims_plots")
   }
   
-    plot_list
+  ggsave(paste0("sims_plots/",var[i],"_plots.png"), plot = full_plot)
+  
+  plot_list[[i]] <- full_plot
+  plot_list[[i]]$var <- var[i]
+  }
 }
+
+
 
 run_compars <- function(model_names,
                         dir,
@@ -129,25 +129,23 @@ run_compars <- function(model_names,
   sims_data_frames
 }
   
- var <- "recdevs"
- sims_data_frames <- sims_results[[1]]
- model_name <- names(sims_results)[1]
+
  sims_plots <- function(var, sims_data_frames, model_name){
    sims_var <- sims_data_frames[[var]]
-   sims_var$om_Median <- apply(sims_var[, grepl("om_", colnames(sims_var))], 1, median)
+   sims_var$om_Median <- apply(sims_var[,grep("om_", colnames(sims_var))], 1, median)
     
    # Get EM 95% quantile, 5% quantile, median
    em_names <- unique(gsub("-.*", "", grep("em_",colnames(sims_var), value = TRUE)))
    for(i in 1:length(em_names)){
      # median
      name_i <- paste0(em_names[i],"_Median")
-     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, median)
+     sims_var[, name_i] <- apply(sims_var[,grep(em_names[i], colnames(sims_var))], 1, median)
      #95% quantile
      name_i <- paste0(em_names[i],"_95%")
-     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.95)
+     sims_var[, name_i] <- apply(sims_var[,grep(em_names[i], colnames(sims_var))], 1, quantile, 0.95)
      #5% quantile
      name_i <- paste0(em_names[i],"_5%")
-     sims_var[, name_i] <- apply(sims_var[, grepl(em_names[i], colnames(sims_var))], 1, quantile, 0.05)
+     sims_var[, name_i] <- apply(sims_var[,grep(em_names[i], colnames(sims_var))], 1, quantile, 0.05)
    }
    
    # Reshape
@@ -175,10 +173,13 @@ run_compars <- function(model_names,
      scale_fill_manual("", values = "#d3d3d3") +
      theme_classic() +
      theme(
-       strip.background = element_rect(fill = "#007582", color = "#002364"),
-       strip.text = element_textbox(size = 12, color = "white"),
+       strip.background = element_rect(fill = "#007582", color = "#002364", ),
+       strip.text = element_textbox(size = 8, color = "white", face = "bold"),
        plot.title.position = "plot",
-       plot.title = element_markdown(size = 11, lineheight = 1.2)
+       plot.title = element_markdown(size = 11, lineheight = 1.2, face = "bold"),
+       axis.title = element_text(size = 10),
+       axis.text = element_text(size = 6),
+       plot.margin = margin(0,0,0,0, "cm")
      ) +
      labs(
        title = stringr::str_to_title(gsub("_"," ", model_name)),
