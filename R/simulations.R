@@ -62,6 +62,81 @@ copy_files_time <- stop_time - start_time
 #    min on VM
 # 7.75 sec on desktop
 
+
+# Unnested Iterations in parallel
+start_time <- Sys.time()
+unnested_change_run_em_parallel(dir = dir, 
+                                df = em_df, 
+                                exe_filepath = file.path(dir, "ss_win.exe"),
+                                new_filename = "unnested_iterations")
+stop_time <- Sys.time()
+time_unnested_parallel_run_iter <- stop_time - start_time
+# 180 models; first 2 iters of each scenario run twice (180 + 36 = 216 total model runs)
+# This takes 47.97 min on VM 
+# This takes 1 hr 59 min on desktop
+
+# What is this?????
+model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
+model_run_completed <- function(.x){
+files <- list.files(file.path(dir, "unnested_iterations", .x))
+report_in_files <- grepl(list.files(files), pattern = "Report.sso")
+model <- .x
+df <- data.frame(model, report_in_files)
+names(df) < c("model", "report_in_files")
+}
+report.all <- do.call(rbind, model_run)
+
+
+# Get results
+sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
+model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
+start_time <- Sys.time()
+get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
+                var = c("recdevs", "Spawnbio", "Bratio", "SPRratio", "Fvalue"),
+                model_names = model_names[3:5])
+stop_time <- Sys.time()
+parallel_time <- stop_time - start_time
+
+
+
+# Convergence --- is this anywhere else?
+convergence <- data.frame()
+model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
+model_dir <- model_dir[!grepl("plots", model_dir)]
+model_dir <- model_dir[!grepl("-om_", model_dir)]
+for(m in 1:length(model_dir)){
+convergence_fill <- data.frame(
+  model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
+  iteration = paste0("iteration_",gsub(".*-iteration_","",basename(model_dir[m]))),
+  model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
+  model_converged2 = 
+    if(file.exists(file.path(model_dir[m], "covar.sso"))){
+       !any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))}
+)
+convergence <- rbind(convergence, convergence_fill)
+}
+convergence_new <- convergence |>
+  dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
+                                      model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
+  dplyr::select(-model_converged1, -model_converged2)
+
+
+# Get results from EMs and OMs in parallel - this is a different way, the ss3sim way to get results
+# start_time <- Sys.time()
+# get_all_results(dir = dir, new_filename = "unnested_iterations")
+# stop_time <- Sys.time()
+# time_get_results <- stop_time - start_time
+# This takes 1.24 min on VM
+# This takes      min on desktop
+
+# results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
+# scalar_re <- ss3sim::calculate_re()
+#### STILL TO WORK ON ####
+# Scalar results don't look like ss3sim scalar results, missing lots of columns, need to fix
+# Other results & plotting?
+# Put together function or workflow to do all things
+
+
 # Model folders in parallel
 # start_time <- Sys.time()
 # change_run_em(model_dir = dirs,
@@ -95,69 +170,3 @@ copy_files_time <- stop_time - start_time
 # With 2 iterations this took ~1.5 hours
 # With 10 iterations x 3 EMs this took 2.56 hours
 # Total of 180 models
-
-# Unnested Iterations in parallel
-start_time <- Sys.time()
-unnested_change_run_em_parallel(dir = dir, 
-                                df = em_df, 
-                                exe_filepath = file.path(dir, "ss_win.exe"),
-                                new_filename = "unnested_iterations")
-stop_time <- Sys.time()
-time_unnested_parallel_run_iter <- stop_time - start_time
-# 180 models; first 2 iters of each scenario run twice (180 + 36 = 216 total model runs)
-# This takes 47.97 min on VM 
-# This takes 1 hr 59 min on desktop
-
-model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
-model_run_completed <- function(.x){
-files <- list.files(file.path(dir, "unnested_iterations", .x))
-report_in_files <- grepl(list.files(files), pattern = "Report.sso")
-model <- .x
-df <- data.frame(model, report_in_files)
-names(df) < c("model", "report_in_files")
-}
-report.all <- do.call(rbind, model_run)
-
-# Get results from EMs and OMs in parallel
-# start_time <- Sys.time()
-# get_all_results(dir = dir, new_filename = "unnested_iterations")
-# stop_time <- Sys.time()
-# time_get_results <- stop_time - start_time
-# This takes 1.24 min on VM
-# This takes      min on desktop
-
-# results_scalar <- read.csv(file.path(dir, "unnested_iterations","results_scalar.csv"))
-# scalar_re <- ss3sim::calculate_re()
-#### STILL TO WORK ON ####
-# Scalar results don't look like ss3sim scalar results, missing lots of columns, need to fix
-# Other results & plotting?
-# Put together function or workflow to do all things
-
-# Get results
-start_time <- Sys.time()
-get_sims_output(dir = dir, 
-                new_filename = "unnested_iterations",
-                file_copy = TRUE)
-stop_time <- Sys.time()
-parallel_time <- stop_time - start_time
-
-
-convergence <- data.frame()
-model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
-model_dir <- model_dir[!grepl("plots", model_dir)]
-model_dir <- model_dir[!grepl("-om_", model_dir)]
-for(m in 1:length(model_dir)){
-convergence_fill <- data.frame(
-  model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
-  iteration = paste0("iteration_",gsub(".*-iteration_","",basename(model_dir[m]))),
-  model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
-  model_converged2 = 
-    if(file.exists(file.path(model_dir[m], "covar.sso"))){
-       !any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))}
-)
-convergence <- rbind(convergence, convergence_fill)
-}
-convergence_new <- convergence |>
-  dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
-                                      model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
-  dplyr::select(-model_converged1, -model_converged2)
