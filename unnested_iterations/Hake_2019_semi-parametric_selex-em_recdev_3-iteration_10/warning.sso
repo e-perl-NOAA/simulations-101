@@ -1,0 +1,7 @@
+Warning 1 : 2D_AR selectivity deviations option is selected!
+Warning 2 : Minimum pop size bin:_10; is > L at Amin for sex: 1; Gpat: 1; L= 5
+Warning 3 : poor convergence in Fmsy, final dy/dy2= -0.100069
+Warning 4 : Fmsy.mey is close to max allowed; check for convergence 
+Warning 5 : Final gradient: 4.73944 is larger than final_conv: 0.0001
+Note 1 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 5 warnings  and 1 note 

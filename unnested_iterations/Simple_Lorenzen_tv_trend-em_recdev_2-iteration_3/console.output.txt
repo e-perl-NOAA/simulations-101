@@ -1,0 +1,58 @@
+###
+console output
+2024-04-30 17:21:06.145753
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 17:19:08 2024
+phase= 1 | nvar=  3 | iter=  0 | nll=1.17e+05 | mag=3.66e+07 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 20 | nll=8.59e+02 | mag=2.71e+02 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 24 | nll=8.59e+02 | mag=5.34e-01 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 38 | iter=  0 | nll=8.59e+02 | mag=4.63e+02 | par[ 36]=selparm[1]
+phase= 2 | nvar= 38 | iter= 20 | nll=7.96e+02 | mag=3.70e+04 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 40 | nll=7.59e+02 | mag=4.03e+04 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 60 | nll=7.15e+02 | mag=3.98e+03 | par[  2]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=497.812
+phase= 2 | nvar= 38 | iter= 74 | nll=7.14e+02 | mag=4.98e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter=  0 | nll=7.14e+02 | mag=4.98e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 20 | nll=7.14e+02 | mag=3.75e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 40 | nll=7.14e+02 | mag=8.65e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 48 | nll=7.14e+02 | mag=5.41e-01 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=  0 | nll=7.14e+02 | mag=7.15e+01 | par[  2]=MGparm[3]
+phase= 4 | nvar= 50 | iter= 20 | nll=7.13e+02 | mag=2.40e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 40 | nll=7.11e+02 | mag=6.17e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 60 | nll=7.11e+02 | mag=4.60e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 80 | nll=7.10e+02 | mag=4.36e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=100 | nll=7.10e+02 | mag=1.62e-02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=105 | nll=7.10e+02 | mag=9.68e-05 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  0 | nll=7.10e+02 | mag=9.69e-05 | par[  6]=SR_parm[1]
+Optimization completed after 30 s with final statistics:
+  nll=710.019330 | mag=9.69053e-05 | par[  6]=SR_parm[1]
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (17 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (1 m 8.4 s) 
+Inverting Hessian (60 variables): 20%, 40%, 60%, 80%, 100%
+
+ Error: Estimated variance of parameter 6 is -3.74354e-06, failed to invert Hessian.
+        No uncertainty estimates available. Fix model structure and reoptimize.
+Iterations: 601
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 3 warnings  and 2 notes 
+
+Finished running model 'ss3' after 1 m 58 s.

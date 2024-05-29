@@ -1,0 +1,5 @@
+Note 1 Information: Max data length bin: 90  < max pop len bins: 94; so will accumulate larger pop len bins
+Warning 1 : bias adjustment ramp extends into forecast; biasadj set to 0.0 internally for forecast years
+Warning 2 : Fmsy/mey is <1/3 of Fspr are you sure?  check for convergence 
+Note 2 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 2 warnings  and 2 notes 

@@ -1,0 +1,6 @@
+Warning 1 : Minimum pop size bin:_10; is > L at Amin for sex: 1; Gpat: 1; L= 5
+Warning 2 : poor convergence in Fmsy, final dy/dy2= -0.33978
+Warning 3 : Fmsy.mey is close to max allowed; check for convergence 
+Warning 4 : Final gradient: 316.539 is larger than final_conv: 0.0001
+Note 1 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 4 warnings  and 1 note 

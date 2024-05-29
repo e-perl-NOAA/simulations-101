@@ -1,0 +1,22 @@
+Warning 1 : At least one block pattern ends in endyr. Check the output parameter value time series to see if the values in forecast years are as intended.
+Note 1 Information: Max harvest rate typically is >1.0 for F_method 2, 3 or 4 0.9
+Warning 2 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 7; y: 2001; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 3 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 9; y: 2001; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 4 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 7; y: 2002; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 5 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 9; y: 2002; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 6 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 7; y: 2003; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 7 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 9; y: 2003; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 8 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 7; y: 2004; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 9 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 595; fleet: 11; base_parm#: 9; y: 2004; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 10 : Final gradient: 84.6766 is larger than final_conv: 0.0001
+Warning 11 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 7; y: 2001; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 12 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 9; y: 2001; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 13 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 7; y: 2002; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 14 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 9; y: 2002; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 15 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 7; y: 2003; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 16 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 9; y: 2003; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Warning 17 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 7; y: 2004; min: 2; max: 15; base: 11.6976 timevary_val: 1.96535  Age_DblN_peak_Fish2(2)
+Warning 18 Adjustment: Adjusted selparm out of base parm bounds. Phase: 6; Inter: 773; fleet: 11; base_parm#: 9; y: 2004; min: -2; max: 15; base: 2.37179 timevary_val: -7.62807  Age_DblN_ascend_se_Fish2(2)
+Note 2 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+Note 3 Information:  N parameters that are on or within 1% of min-max bound: 2; check results, variance may be suspect
+ 18 warnings  and 3 notes 

@@ -3,13 +3,17 @@
 library(furrr)
 library(r4ss)
 library(future)
-library(parallel)
+library(parallelly)
 library(ggplot2)
 library(ggpubr)
 library(ggtext)
 
 dir <- getwd()
+
+# r4ss::get_ss3_exe()
 new_filename <- "unnested_iterations"
+new_filename <- "all_models_iterations_test"
+
 # dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
 # 
 # dirs <- subset(dirs, !grepl(dirs, pattern = ".Rproj.user"))
@@ -18,86 +22,88 @@ new_filename <- "unnested_iterations"
 # dirs <- grep(paste0(dir, "/R"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
 # dirs <- grep(paste0(dir, "/.Rproj.user"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
 
-# Try flattening out the nested folders (rename function)
 
-# create em data frame
+
+#### Step 1 - Create EM data frame ####
 em_df<- data.frame(
   em_names = c("recdev_1", "recdev_2", "recdev_3"),
   config_file = c("ctl", "ctl", "ctl"),
   var_change = c("do_recdev", "do_recdev", "do_recdev"),
-  new_val = c(1, 1, 2))
+  new_val = c(1, 2, 3))
 
 df <- em_df
 
-# These will become the "iterations" in the ems
-# probably need to make this run in parallel too
-# start_time <- Sys.time()
-# create_om_models(model_dir = dirs,
-#                  iterations = 10,
-#                  exe_filepath = file.path(dir, "ss_win.exe"))
-# stop_time <- Sys.time()
-# no_parallel_time <- stop_time - start_time
-# 9.91 min
 
-start_time <- Sys.time()
+#### Step 2 - Create OM models ####
+# start_time <- Sys.time()
 create_om_models_parallel(dir = dir,
                           iterations = 10,
-                          exe_filepath = file.path(dir, "ss_win.exe"))
-stop_time <- Sys.time()
-parallel_time <- stop_time - start_time
-# 7.59 min on VM
-# 1.89 min on desktop
+                          exe_filepath = file.path(dir, "ss3.exe"))
+# stop_time <- Sys.time()
+# parallel_time <- stop_time - start_time
 
+
+#### Step 3 = Copy bootstrap & starter files from OM to EM new_filename dir ####
 # Copy the bootstrap files from the om iterations and the configuration files 
-# from the overall directory to the em > iteration file folders
+# from the overall directory to the EM iteration file folders
 # this runs fast without having to parallelize it
-# copy_files_to_em(model_dir = dirs, 
-#                  df = em_df)
-start_time <- Sys.time()
+# start_time <- Sys.time()
 copy_files_to_em_unnested(dir = dir, 
                  df = em_df,
-                 new_filename = "unnested_iterations")
-stop_time <- Sys.time()
-copy_files_time <- stop_time - start_time
-#    min on VM
-# 7.75 sec on desktop
+                 new_filename = new_filename,
+                 exe_filepath = file.path(dir, "ss3.exe"))
+# stop_time <- Sys.time()
+# copy_files_time <- stop_time - start_time
 
 
-# Unnested Iterations in parallel
-start_time <- Sys.time()
-unnested_change_run_em_parallel(dir = dir, 
+#### Step 4 - Run EMs ####
+# start_time <- Sys.time()
+ncores <- parallelly::availableCores(omit = 1)
+future::plan(multisession, workers = ncores)
+unnested_change_run_em_parallel(dir = dir,
+                                new_filename = new_filename,
                                 df = em_df, 
-                                exe_filepath = file.path(dir, "ss_win.exe"),
-                                new_filename = "unnested_iterations")
-stop_time <- Sys.time()
-time_unnested_parallel_run_iter <- stop_time - start_time
+                                exe_filepath = file.path(dir, "ss3.exe"))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# stop_time <- Sys.time()
+# time_unnested_parallel_run_iter <- stop_time - start_time
 # 180 models; first 2 iters of each scenario run twice (180 + 36 = 216 total model runs)
 # This takes 47.97 min on VM 
 # This takes 1 hr 59 min on desktop
 
-# What is this?????
-model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
-model_run_completed <- function(.x){
-files <- list.files(file.path(dir, "unnested_iterations", .x))
-report_in_files <- grepl(list.files(files), pattern = "Report.sso")
-model <- .x
-df <- data.frame(model, report_in_files)
-names(df) < c("model", "report_in_files")
-}
-report.all <- do.call(rbind, model_run)
-
 
 # Get results
-sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
-model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
-start_time <- Sys.time()
+# sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
+# model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
+# 
+# get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
+#                 var = c("recdevs", "Spawnbio", "Bratio", "SPRratio", "Fvalue"),
+#                 model_names = model_names[3:5])
+# Removed BigSkate in get_sims_output function because Inf in file was causing issues
+
+ncores <- parallelly::availableCores(omit = 1)
+future::plan(multisession, workers = ncores)
 get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
-                var = c("recdevs", "Spawnbio", "Bratio", "SPRratio", "Fvalue"),
-                model_names = model_names[3:5])
+                var = c("recdevs"),
+                model_names = NULL)
+
+start_time <- Sys.time()
 stop_time <- Sys.time()
 parallel_time <- stop_time - start_time
 
 
+
+
+
+# What is this?????
+model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
+model_run_completed <- function(.x){
+  files <- list.files(file.path(dir, "unnested_iterations", .x))
+  report_in_files <- grepl(list.files(files), pattern = "Report.sso")
+  model <- .x
+  df <- data.frame(model, report_in_files)
+  names(df) < c("model", "report_in_files")
+}
+report.all <- do.call(rbind, model_run)
 
 # Convergence --- is this anywhere else?
 convergence <- data.frame()
@@ -119,6 +125,9 @@ convergence_new <- convergence |>
   dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
                                       model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
   dplyr::select(-model_converged1, -model_converged2)
+
+
+
 
 
 # Get results from EMs and OMs in parallel - this is a different way, the ss3sim way to get results

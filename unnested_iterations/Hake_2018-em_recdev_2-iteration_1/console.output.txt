@@ -1,0 +1,82 @@
+###
+console output
+2024-04-30 20:24:06.995826
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Reading the empirical weight at age file ...done
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 20:22:59 2024
+phase= 1 | nvar= 48 | iter=  0 | nll=6.80e+04 | mag=5.82e+05 | par[  1]=SR_parm[1]
+phase= 1 | nvar= 48 | iter= 20 | nll=2.44e+03 | mag=2.34e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar= 48 | iter= 40 | nll=2.22e+03 | mag=3.48e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=3996.06
+phase= 1 | nvar= 48 | iter= 57 | nll=1.97e+03 | mag=4.00e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter=  0 | nll=1.97e+03 | mag=4.10e+03 | par[ 52]=selparm[6]
+phase= 2 | nvar= 58 | iter= 20 | nll=1.52e+03 | mag=3.44e+03 | par[ 51]=selparm[5]
+phase= 2 | nvar= 58 | iter= 40 | nll=1.48e+03 | mag=3.34e+03 | par[ 51]=selparm[5]
+phase= 2 | nvar= 58 | iter= 60 | nll=1.33e+03 | mag=2.07e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=6858.98
+phase= 2 | nvar= 58 | iter= 79 | nll=1.17e+03 | mag=6.86e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter=  0 | nll=1.17e+03 | mag=6.86e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 20 | nll=1.17e+03 | mag=7.64e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 40 | nll=1.17e+03 | mag=6.95e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 60 | nll=1.17e+03 | mag=5.17e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 80 | nll=1.17e+03 | mag=3.54e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=3541.21
+phase= 3 | nvar= 82 | iter= 91 | nll=1.16e+03 | mag=3.54e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 85 | iter=  0 | nll=1.16e+03 | mag=3.54e+03 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 85 | iter= 20 | nll=1.16e+03 | mag=4.98e+03 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 85 | iter= 40 | nll=1.16e+03 | mag=2.44e+03 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 85 | iter= 60 | nll=1.16e+03 | mag=2.98e+03 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 85 | iter= 80 | nll=1.16e+03 | mag=1.34e+03 | par[  2]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=1449.24
+phase= 4 | nvar= 85 | iter= 82 | nll=1.16e+03 | mag=1.45e+03 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=  0 | nll=1.16e+03 | mag=1.45e+03 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 20 | nll=1.12e+03 | mag=4.50e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 40 | nll=1.12e+03 | mag=1.08e+03 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 60 | nll=1.12e+03 | mag=5.45e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 80 | nll=1.11e+03 | mag=6.76e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=100 | nll=1.11e+03 | mag=8.11e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=120 | nll=1.11e+03 | mag=6.76e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=140 | nll=1.11e+03 | mag=4.25e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=160 | nll=1.11e+03 | mag=6.81e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=180 | nll=1.11e+03 | mag=5.33e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=200 | nll=1.11e+03 | mag=5.09e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=220 | nll=1.11e+03 | mag=1.49e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=240 | nll=1.11e+03 | mag=2.49e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=257 | nll=1.11e+03 | mag=8.76e+01 | par[  2]=SR_parm[1]
+Optimization completed after 18 s with final statistics:
+  nll=1109.488728 | mag=8.75798e+01 | par[  2]=SR_parm[1]
+
+Warning: the following parameters had issues
+  Q_parm[2] is within 0.1% of lower bound: 0.05 < 0.050104 < 1.2
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (224 variables): 20%, 40%, 60%, 80%, 100% done (26 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (22 s) 
+Inverting Hessian (224 variables): 20%, 40%, 60%, 80%, 100%
+
+ Error: Estimated variance of parameter 89 is -1.50182e-05, failed to invert Hessian.
+        No uncertainty estimates available. Fix model structure and reoptimize.
+Iterations: 1620
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+ N parameters that are on or within 1% of min-max bound: 1
+
+!!  Run has completed  !! 
+!!  See warning.sso for 3 warnings  and 2 notes 
+
+Finished running model 'ss3' after 1 m 7.5 s.

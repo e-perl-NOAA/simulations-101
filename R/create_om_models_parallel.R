@@ -12,7 +12,7 @@
 #'
 #' @export
 #' 
-#' @import parallel
+#' @import parallelly
 #' @import furrr
 #' @import future
 #' @import r4ss
@@ -27,14 +27,15 @@ create_om_models_parallel <- function(dir,
                                       exe_filepath) {
   model_dir <- list.dirs(grep("models", list.dirs(dir, recursive = FALSE), value = TRUE), recursive = FALSE)
   
-  ncores <- parallel::detectCores() - 1
+  ncores <- parallelly::availableCores(omit = 1)
   future::plan(multisession, workers = ncores)
   
   furrr::future_map(model_dir, function(m) {
+    message(paste0("Running ", m))
     for (i in 1:iterations) {
       from <- normalizePath(m, mustWork = TRUE)
-      to <- file.path(from, paste0(basename(m),"-om_", i))
-      files <- list.files(from, pattern = ".SS$|.ss$|.dat|.ctl", full.names = TRUE)
+      to <- file.path(from, paste0("om_", i))
+      files <- list.files(from, pattern = ".SS$|.ss$|.dat|.ctl|.DAT|.CTL", full.names = TRUE)
       
       dir.create(to, showWarnings = FALSE, recursive = TRUE)
       file.copy(files, to, recursive = FALSE)
@@ -44,6 +45,7 @@ create_om_models_parallel <- function(dir,
       inputs$ctl$max_bias_adj <- -1
       inputs$start$init_values_src <- 0
       r4ss::SS_write(inputs, dir = to, overwrite = TRUE)
+      file.remove(file.path(to,"ss3.par"))
       
       r4ss::SS_recdevs(
         fyr = inputs$ctl$MainRdevYrFirst,
@@ -57,4 +59,5 @@ create_om_models_parallel <- function(dir,
     }
   })
 }
+
 

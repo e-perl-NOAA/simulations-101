@@ -1,0 +1,19 @@
+$par
+[1] 1962.538657 1983.000000 2000.519446 2001.875122    0.572141
+
+$objective
+[1] 1.800936
+
+$convergence
+[1] 1
+
+$iterations
+[1] 61
+
+$evaluations
+function gradient 
+      94      419 
+
+$message
+[1] "false convergence (8)"
+

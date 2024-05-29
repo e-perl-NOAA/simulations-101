@@ -1,0 +1,7 @@
+Note 1 Information: Max data length bin: 90  < max pop len bins: 94; so will accumulate larger pop len bins
+Warning 1 : bias adjustment ramp extends into forecast; biasadj set to 0.0 internally for forecast years
+Warning 2 : 1st iteration warning: ssb(endyr)/ssb(styr)= 0.000275451; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+Warning 3 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+Note 2 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+Warning 4 : Reminder: Number of lamdas !=0.0 and !=1.0:  3
+ 4 warnings  and 2 notes 

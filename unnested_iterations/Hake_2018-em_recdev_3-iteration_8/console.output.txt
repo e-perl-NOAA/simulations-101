@@ -1,0 +1,73 @@
+###
+console output
+2024-04-30 20:25:24.852283
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Reading the empirical weight at age file ...done
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 20:24:21 2024
+phase= 1 | nvar= 48 | iter=  0 | nll=4.32e+03 | mag=4.93e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar= 48 | iter= 20 | nll=1.84e+03 | mag=4.42e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar= 48 | iter= 40 | nll=1.75e+03 | mag=3.96e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar= 48 | iter= 60 | nll=1.39e+03 | mag=6.27e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=7789.2
+phase= 1 | nvar= 48 | iter= 66 | nll=1.35e+03 | mag=7.79e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter=  0 | nll=1.35e+03 | mag=1.57e+04 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter= 20 | nll=1.26e+03 | mag=1.25e+04 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter= 40 | nll=1.25e+03 | mag=1.03e+04 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter= 60 | nll=1.23e+03 | mag=7.08e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 58 | iter= 80 | nll=1.18e+03 | mag=1.82e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=1820.54
+phase= 2 | nvar= 58 | iter= 81 | nll=1.18e+03 | mag=1.82e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter=  0 | nll=1.18e+03 | mag=1.82e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 20 | nll=1.17e+03 | mag=6.75e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 40 | nll=1.17e+03 | mag=5.89e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 60 | nll=1.16e+03 | mag=3.51e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 82 | iter= 80 | nll=1.16e+03 | mag=1.92e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=1315.53
+phase= 3 | nvar= 82 | iter= 91 | nll=1.16e+03 | mag=1.32e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 85 | iter=  0 | nll=1.16e+03 | mag=1.32e+03 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 85 | iter=  4 | nll=1.16e+03 | mag=6.43e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=  0 | nll=1.16e+03 | mag=6.44e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 20 | nll=1.13e+03 | mag=2.62e+03 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter= 40 | nll=1.12e+03 | mag=1.13e+03 | par[218]=parm_dev[5][21]
+phase= 5 | nvar=224 | iter= 60 | nll=1.12e+03 | mag=1.06e+03 | par[218]=parm_dev[5][21]
+phase= 5 | nvar=224 | iter= 80 | nll=1.12e+03 | mag=1.18e+03 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=100 | nll=1.11e+03 | mag=6.68e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=120 | nll=1.11e+03 | mag=4.19e+02 | par[  2]=SR_parm[1]
+phase= 5 | nvar=224 | iter=126 | nll=1.11e+03 | mag=3.10e+02 | par[  2]=SR_parm[1]
+Optimization completed after 14 s with final statistics:
+  nll=1111.107101 | mag=3.10371e+02 | par[  2]=SR_parm[1]
+
+Warning: the following parameters had issues
+  selparm[43] is within 1% of upper bound: -5 < 19.9333 < 20
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (224 variables): 20%, 40%, 60%, 80%, 100% done (27 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (21 s) 
+Inverting Hessian (224 variables): 20%, 40%, 60%, 80%, 100%
+
+ Error: Estimated variance of parameter 1 is -0.000280317, failed to invert Hessian.
+        No uncertainty estimates available. Fix model structure and reoptimize.
+Iterations: 1405
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+ N parameters that are on or within 1% of min-max bound: 1
+
+!!  Run has completed  !! 
+!!  See warning.sso for 2 warnings  and 2 notes 
+
+Finished running model 'ss3' after 1 m 3.5 s.

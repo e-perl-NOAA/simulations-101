@@ -1,0 +1,32 @@
+###
+console output
+2024-04-29 15:13:25.980975
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 1 at Mon Apr 29 15:13:13 2024
+1 1 -log(L): 5.24969  Spbio: 101005 39491.6
+phase= 1 | nvar=  1 | iter=  0 | nll=5.25e+00 | mag=3.14e-14 | par[  1]=dummy_parm
+Optimization completed after 0.39 s with final statistics:
+  nll=5.249692 | mag=3.13908e-14 | par[  1]=dummy_parm
+
+1 2 -log(L): 5.24969  Spbio: 101005 39491.6
+Iterations: 2
+Finished calculating benchmarks
+Writing wtatage.ss_new
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 2 warnings  and 2 notes 
+
+Finished running model 'ss3' after 12 s.

@@ -1,0 +1,58 @@
+###
+console output
+2024-04-30 17:10:32.759928
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 17:08:07 2024
+phase= 1 | nvar=  3 | iter=  0 | nll=3.61e+04 | mag=2.88e+07 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 20 | nll=9.68e+02 | mag=5.95e+03 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 25 | nll=9.65e+02 | mag=7.69e+00 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 38 | iter=  0 | nll=9.65e+02 | mag=5.15e+02 | par[ 24]=recdev2[22]
+phase= 2 | nvar= 38 | iter= 20 | nll=7.90e+02 | mag=5.20e+03 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 40 | nll=7.86e+02 | mag=2.57e+02 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 45 | nll=7.86e+02 | mag=3.26e+00 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter=  0 | nll=7.86e+02 | mag=1.84e+01 | par[ 37]=selparm[2]
+phase= 3 | nvar= 40 | iter= 20 | nll=7.86e+02 | mag=7.29e+01 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 40 | nll=7.86e+02 | mag=1.46e+01 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 47 | nll=7.86e+02 | mag=3.94e-02 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=  0 | nll=7.86e+02 | mag=9.46e+01 | par[ 45]=selparm[11]
+phase= 4 | nvar= 50 | iter= 20 | nll=7.84e+02 | mag=1.59e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 40 | nll=7.84e+02 | mag=1.59e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 60 | nll=7.83e+02 | mag=4.18e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 79 | nll=7.83e+02 | mag=3.33e-05 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  0 | nll=7.83e+02 | mag=3.33e-05 | par[  6]=SR_parm[1]
+Optimization completed after 26 s with final statistics:
+  nll=783.009443 | mag=3.32887e-05 | par[  6]=SR_parm[1]
+
+Warning: the following parameters had issues
+  Q_parm[3] is within 0.1% of lower bound: -7 < -7 < 5
+  selparm[16] is within 1% of lower bound: 1 < 1.0411 < 20
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (21 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (1 m 35 s) 
+Inverting Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (0.009 s) 
+Starting standard error calculations...  done (0.79 s) 
+Iterations: 521
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+ N parameters that are on or within 1% of min-max bound: 2
+
+!!  Run has completed  !! 
+!!  See warning.sso for 4 warnings  and 3 notes 
+
+Finished running model 'ss3' after 2 m 26 s.

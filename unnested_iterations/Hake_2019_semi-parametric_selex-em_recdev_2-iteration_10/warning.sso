@@ -1,0 +1,6 @@
+Warning 1 : 2D_AR selectivity deviations option is selected!
+Warning 2 : Minimum pop size bin:_10; is > L at Amin for sex: 1; Gpat: 1; L= 5
+Warning 3 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+Warning 4 : Final gradient: 68.1105 is larger than final_conv: 0.0001
+Note 1 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 4 warnings  and 1 note 

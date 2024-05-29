@@ -1,0 +1,7 @@
+Note 1 Information: Max data length bin: 90  < max pop len bins: 94; so will accumulate larger pop len bins
+Warning 1 : Forecast=0 or -1, so rest of forecast file will not be read and can be omitted;
+Warning 2 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+Warning 3 : poor convergence in F0.1 search target= 0.643915  actual= 0.647171
+Warning 4 : Final gradient: 1082.37 is larger than final_conv: 0.0001
+Note 2 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 4 warnings  and 2 notes 

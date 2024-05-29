@@ -1,0 +1,176 @@
+###
+console output
+2024-04-30 17:07:31.828887
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 16:59:29 2024
+phase= 1 | nvar=  3 | iter=  0 | nll=2.34e+03 | mag=7.72e+04 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 10 | nll=1.52e+03 | mag=4.23e-01 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 38 | iter=  0 | nll=1.52e+03 | mag=1.00e+03 | par[ 22]=recdev2[20]
+phase= 2 | nvar= 38 | iter= 20 | nll=1.04e+03 | mag=2.18e+05 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 40 | nll=8.58e+02 | mag=3.66e+05 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 60 | nll=7.04e+02 | mag=4.62e+05 | par[  2]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=335124
+phase= 2 | nvar= 38 | iter= 73 | nll=6.99e+02 | mag=3.35e+05 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter=  0 | nll=6.99e+02 | mag=3.35e+05 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 20 | nll=6.96e+02 | mag=6.45e+05 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 40 | nll=6.95e+02 | mag=1.41e+06 | par[  2]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=605862
+phase= 3 | nvar= 40 | iter= 53 | nll=6.91e+02 | mag=6.06e+05 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=  0 | nll=6.91e+02 | mag=6.06e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 20 | nll=6.86e+02 | mag=3.55e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 40 | nll=6.85e+02 | mag=1.71e+06 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 60 | nll=6.78e+02 | mag=7.04e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 80 | nll=6.73e+02 | mag=2.83e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=100 | nll=6.72e+02 | mag=1.84e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=120 | nll=6.72e+02 | mag=2.24e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=140 | nll=6.71e+02 | mag=1.37e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=160 | nll=6.70e+02 | mag=1.44e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=180 | nll=6.70e+02 | mag=3.64e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=200 | nll=6.70e+02 | mag=1.76e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=220 | nll=6.69e+02 | mag=3.85e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=240 | nll=6.68e+02 | mag=2.18e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=260 | nll=6.67e+02 | mag=1.36e+05 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=280 | nll=6.67e+02 | mag=9.91e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=300 | nll=6.67e+02 | mag=3.61e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=320 | nll=6.67e+02 | mag=5.54e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=340 | nll=6.67e+02 | mag=3.78e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=360 | nll=6.67e+02 | mag=1.48e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=380 | nll=6.67e+02 | mag=5.84e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=400 | nll=6.67e+02 | mag=2.16e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=420 | nll=6.67e+02 | mag=4.87e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=440 | nll=6.66e+02 | mag=6.80e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=460 | nll=6.66e+02 | mag=9.54e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=480 | nll=6.66e+02 | mag=8.03e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=500 | nll=6.66e+02 | mag=3.85e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=520 | nll=6.66e+02 | mag=4.08e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=540 | nll=6.66e+02 | mag=1.99e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=560 | nll=6.66e+02 | mag=3.51e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=580 | nll=6.66e+02 | mag=1.55e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=600 | nll=6.66e+02 | mag=5.26e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=620 | nll=6.66e+02 | mag=7.83e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=640 | nll=6.66e+02 | mag=1.33e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=660 | nll=6.66e+02 | mag=7.41e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=680 | nll=6.66e+02 | mag=1.68e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=700 | nll=6.66e+02 | mag=3.54e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=720 | nll=6.66e+02 | mag=2.11e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=740 | nll=6.66e+02 | mag=2.24e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=760 | nll=6.66e+02 | mag=5.06e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=780 | nll=6.66e+02 | mag=4.75e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=800 | nll=6.66e+02 | mag=1.48e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=820 | nll=6.66e+02 | mag=3.05e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=840 | nll=6.66e+02 | mag=1.48e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=860 | nll=6.66e+02 | mag=5.49e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=880 | nll=6.66e+02 | mag=3.59e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=900 | nll=6.66e+02 | mag=2.85e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=920 | nll=6.66e+02 | mag=3.78e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=940 | nll=6.66e+02 | mag=1.11e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=960 | nll=6.66e+02 | mag=2.98e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=980 | nll=6.66e+02 | mag=3.08e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1000 | nll=6.66e+02 | mag=5.55e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1020 | nll=6.66e+02 | mag=7.26e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1040 | nll=6.66e+02 | mag=8.83e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1060 | nll=6.66e+02 | mag=4.26e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1080 | nll=6.66e+02 | mag=5.45e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1100 | nll=6.66e+02 | mag=1.29e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1120 | nll=6.66e+02 | mag=1.09e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1140 | nll=6.66e+02 | mag=3.29e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1160 | nll=6.66e+02 | mag=1.48e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1180 | nll=6.66e+02 | mag=2.66e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1200 | nll=6.66e+02 | mag=1.25e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1220 | nll=6.66e+02 | mag=9.02e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1240 | nll=6.66e+02 | mag=2.47e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1260 | nll=6.66e+02 | mag=3.54e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1280 | nll=6.66e+02 | mag=1.33e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1300 | nll=6.66e+02 | mag=8.55e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1320 | nll=6.66e+02 | mag=5.64e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1340 | nll=6.66e+02 | mag=4.69e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1360 | nll=6.66e+02 | mag=1.62e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1380 | nll=6.66e+02 | mag=5.15e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1400 | nll=6.66e+02 | mag=1.52e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1420 | nll=6.66e+02 | mag=1.03e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1440 | nll=6.66e+02 | mag=1.36e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1460 | nll=6.66e+02 | mag=3.15e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1480 | nll=6.66e+02 | mag=2.21e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1500 | nll=6.66e+02 | mag=4.90e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1520 | nll=6.66e+02 | mag=3.38e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1540 | nll=6.66e+02 | mag=2.14e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1560 | nll=6.65e+02 | mag=2.89e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1580 | nll=6.65e+02 | mag=4.21e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1600 | nll=6.65e+02 | mag=5.49e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1620 | nll=6.65e+02 | mag=2.41e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1640 | nll=6.65e+02 | mag=2.24e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1660 | nll=6.65e+02 | mag=3.30e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1680 | nll=6.65e+02 | mag=2.05e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1700 | nll=6.65e+02 | mag=1.12e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1720 | nll=6.65e+02 | mag=2.87e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1740 | nll=6.65e+02 | mag=9.25e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1760 | nll=6.65e+02 | mag=3.93e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1780 | nll=6.65e+02 | mag=2.72e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1800 | nll=6.65e+02 | mag=3.69e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1820 | nll=6.65e+02 | mag=2.04e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1840 | nll=6.65e+02 | mag=1.89e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1860 | nll=6.65e+02 | mag=5.72e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1880 | nll=6.65e+02 | mag=4.56e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1900 | nll=6.65e+02 | mag=1.15e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1920 | nll=6.65e+02 | mag=2.37e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1940 | nll=6.65e+02 | mag=2.02e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1960 | nll=6.65e+02 | mag=4.60e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=1980 | nll=6.65e+02 | mag=1.13e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2000 | nll=6.65e+02 | mag=2.94e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2020 | nll=6.65e+02 | mag=3.57e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2040 | nll=6.65e+02 | mag=3.28e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2060 | nll=6.65e+02 | mag=1.53e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2080 | nll=6.65e+02 | mag=1.72e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2100 | nll=6.65e+02 | mag=7.41e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2120 | nll=6.65e+02 | mag=1.63e+04 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2140 | nll=6.65e+02 | mag=9.13e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2160 | nll=6.65e+02 | mag=5.55e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2180 | nll=6.65e+02 | mag=3.04e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2200 | nll=6.65e+02 | mag=2.90e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2220 | nll=6.65e+02 | mag=3.42e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2240 | nll=6.65e+02 | mag=3.04e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2260 | nll=6.65e+02 | mag=3.48e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2280 | nll=6.65e+02 | mag=2.55e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=2300 | nll=6.65e+02 | mag=3.56e-02 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  0 | nll=6.65e+02 | mag=3.54e-02 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  1 | nll=6.65e+02 | mag=3.54e-02 | par[  6]=SR_parm[1]
+Optimization completed after 5 m 43 s with final statistics:
+  nll=665.190381 | mag=3.54125e-02 | par[  6]=SR_parm[1]
+
+Warning: the following parameters had issues
+  recdev2[2000] is within 0.1% of lower bound: -5 < -5 < 5
+  recdev2[2001] is within 0.1% of lower bound: -5 < -5 < 5
+  Q_parm[3] is within 0.1% of lower bound: -7 < -7 < 5
+  selparm[16] is within 1% of lower bound: 1 < 1.15068 < 20
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (26 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (1 m 51 s) 
+Inverting Hessian (60 variables): 20%, 40%, 60%, 80%, 100%
+
+ Error: Estimated variance of parameter 6 is -7.77695e-11, failed to invert Hessian.
+        No uncertainty estimates available. Fix model structure and reoptimize.
+Iterations: 3217
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+ N parameters that are on or within 1% of min-max bound: 2
+
+!!  Run has completed  !! 
+!!  See warning.sso for 2 warnings  and 3 notes 
+
+Finished running model 'ss3' after 8 m 2.4 s.

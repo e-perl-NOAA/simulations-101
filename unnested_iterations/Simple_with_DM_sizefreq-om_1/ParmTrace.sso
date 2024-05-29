@@ -1,0 +1,3 @@
+Phase Iter ObjFun Change SSB_start SSB_end BiasAdj_st BiasAdj_max BiasAdj_end  Component_like_starts_here 
+1 1 13.31542713 -1e+30 101005.1784 31430.88339 1 1 1 Catch 1.97105631e-11 Survey 1 8.670582718  0 -0 0 0 -0 0 8.670582718 Length 0  0 0 0 0 0 0 0 Age 0  0 0 0 0 0 0 0 Size_at_age 0  0 0 0 0 0 0 0 SizeFreq 0  0 0 0 0 Recr_dev -0.8355943367 Regime 0 Fore_Recdev 0 Parm_priors 5.475967877 Softbounds 0.004470871265 Parm_devs 0
+1 2 13.31542713 0 101005.1784 31430.88339 1 1 1 Catch 1.97105631e-11 Survey 1 8.670582718  0 -0 0 0 -0 0 8.670582718 Length 0  0 0 0 0 0 0 0 Age 0  0 0 0 0 0 0 0 Size_at_age 0  0 0 0 0 0 0 0 SizeFreq 0  0 0 0 0 Recr_dev -0.8355943367 Regime 0 Fore_Recdev 0 Parm_priors 5.475967877 Softbounds 0.004470871265 Parm_devs 0

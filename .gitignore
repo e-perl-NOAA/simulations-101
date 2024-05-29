@@ -4,5 +4,4 @@
 .Rhistory
 .RData
 models/
-unnested_iterations/
-new_unnested_iterations/
+**.exe

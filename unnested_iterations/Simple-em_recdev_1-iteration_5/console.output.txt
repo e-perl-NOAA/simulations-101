@@ -1,0 +1,50 @@
+###
+console output
+2024-04-30 16:46:08.475216
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 16:44:35 2024
+phase= 1 | nvar=  3 | iter=  0 | nll=1.95e+03 | mag=1.58e+05 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 12 | nll=1.59e+03 | mag=1.09e+00 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 37 | iter=  0 | nll=1.59e+03 | mag=6.75e+02 | par[ 14]=recdev1[12]
+phase= 2 | nvar= 37 | iter= 20 | nll=1.40e+03 | mag=2.07e+03 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 37 | iter= 40 | nll=1.39e+03 | mag=3.32e+01 | par[  1]=MGparm[2]
+phase= 2 | nvar= 37 | iter= 48 | nll=1.39e+03 | mag=7.45e+00 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter=  0 | nll=1.39e+03 | mag=4.56e+01 | par[ 37]=selparm[2]
+phase= 3 | nvar= 39 | iter= 20 | nll=1.38e+03 | mag=2.40e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter= 40 | nll=1.38e+03 | mag=1.05e+00 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 39 | iter= 42 | nll=1.38e+03 | mag=8.47e-01 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 44 | iter=  0 | nll=1.38e+03 | mag=1.51e+02 | par[  3]=MGparm[4]
+phase= 4 | nvar= 44 | iter= 20 | nll=1.38e+03 | mag=5.57e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 44 | iter= 40 | nll=1.38e+03 | mag=2.08e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 44 | iter= 54 | nll=1.38e+03 | mag=3.31e-05 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 54 | iter=  0 | nll=1.38e+03 | mag=3.31e-05 | par[  6]=SR_parm[1]
+Optimization completed after 19 s with final statistics:
+  nll=1380.651304 | mag=3.31307e-05 | par[  6]=SR_parm[1]
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (17 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (53 s) 
+Inverting Hessian (54 variables): 20%, 40%, 60%, 80%, 100% done (0.006 s) 
+Starting standard error calculations...  done (1.1 s) 
+Iterations: 451
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 2 notes 
+
+Finished running model 'ss3' after 1 m 33 s.

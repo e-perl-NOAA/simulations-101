@@ -1,0 +1,53 @@
+###
+console output
+2024-04-30 17:18:14.923111
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 5 at Tue Apr 30 17:16:28 2024
+phase= 1 | nvar=  3 | iter=  0 | nll=4.11e+04 | mag=3.57e+07 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 20 | nll=9.82e+02 | mag=6.77e+01 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  3 | iter= 22 | nll=9.82e+02 | mag=2.58e-01 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 38 | iter=  0 | nll=9.82e+02 | mag=4.66e+02 | par[ 19]=recdev2[17]
+phase= 2 | nvar= 38 | iter= 20 | nll=8.67e+02 | mag=7.28e+03 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 40 | nll=8.21e+02 | mag=1.16e+03 | par[  2]=SR_parm[1]
+phase= 2 | nvar= 38 | iter= 56 | nll=8.15e+02 | mag=5.43e+00 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter=  0 | nll=8.15e+02 | mag=2.40e+01 | par[ 39]=selparm[4]
+phase= 3 | nvar= 40 | iter= 20 | nll=8.14e+02 | mag=4.25e+02 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 40 | nll=8.13e+02 | mag=5.69e+01 | par[  2]=SR_parm[1]
+phase= 3 | nvar= 40 | iter= 48 | nll=8.13e+02 | mag=4.68e-01 | par[  2]=SR_parm[1]
+phase= 4 | nvar= 50 | iter=  0 | nll=8.13e+02 | mag=2.19e+02 | par[ 45]=selparm[11]
+phase= 4 | nvar= 50 | iter= 20 | nll=8.08e+02 | mag=1.79e+03 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 40 | nll=8.06e+02 | mag=8.40e+02 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 60 | nll=8.05e+02 | mag=1.24e+01 | par[  6]=SR_parm[1]
+phase= 4 | nvar= 50 | iter= 70 | nll=8.05e+02 | mag=3.04e-04 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  0 | nll=8.05e+02 | mag=3.04e-04 | par[  6]=SR_parm[1]
+phase= 5 | nvar= 60 | iter=  1 | nll=8.05e+02 | mag=2.41e-05 | par[ 55]=selparm[11]
+Optimization completed after 22 s with final statistics:
+  nll=805.227197 | mag=2.40766e-05 | par[ 55]=selparm[11]
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (17 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (1 m 5.1 s) 
+Inverting Hessian (60 variables): 20%, 40%, 60%, 80%, 100% done (0.005 s) 
+Starting standard error calculations...  done (0.46 s) 
+Iterations: 538
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 3 warnings  and 2 notes 
+
+Finished running model 'ss3' after 1 m 46 s.

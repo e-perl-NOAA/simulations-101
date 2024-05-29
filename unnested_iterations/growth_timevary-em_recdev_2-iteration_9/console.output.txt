@@ -1,0 +1,449 @@
+###
+console output
+2024-04-30 20:29:43.04744
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 6 at Tue Apr 30 20:29:11 2024
+1 1 -log(L): 1746.94  Spbio: 4.17536e+06 1.44058e+06
+phase= 1 | nvar=  1 | iter=  0 | nll=1.75e+03 | mag=3.17e+01 | par[  1]=Q_parm[1]
+1 2 -log(L): 1746.92  Spbio: 4.17536e+06 1.44058e+06
+1 3 -log(L): 1746.89  Spbio: 4.17536e+06 1.44058e+06
+1 4 -log(L): 1746.86  Spbio: 4.17536e+06 1.44058e+06
+phase= 1 | nvar=  1 | iter=  3 | nll=1.75e+03 | mag=1.43e-01 | par[  1]=Q_parm[1]
+1 5 -log(L): 1746.86  Spbio: 4.17536e+06 1.44058e+06
+2 6 -log(L): 1746.86  Spbio: 4.17536e+06 1.44058e+06
+phase= 2 | nvar=  6 | iter=  0 | nll=1.75e+03 | mag=4.37e+02 | par[  6]=selparm[9]
+2 7 -log(L): 1746.84  Spbio: 4.17536e+06 1.4406e+06
+2 8 -log(L): 1746.65  Spbio: 4.17536e+06 1.44087e+06
+2 9 -log(L): 1745.07  Spbio: 4.17536e+06 1.44348e+06
+2 10 -log(L): 1741.85  Spbio: 4.17536e+06 1.44717e+06
+2 11 -log(L): 1735.42  Spbio: 4.17536e+06 1.44594e+06
+2 12 -log(L): 1738.09  Spbio: 4.17536e+06 1.41661e+06
+2 13 -log(L): 1711.92  Spbio: 4.17536e+06 1.43309e+06
+2 14 -log(L): 2010.1  Spbio: 4.17536e+06 1.41815e+06
+2 15 -log(L): 1713.72  Spbio: 4.17536e+06 1.42644e+06
+2 16 -log(L): 1710.29  Spbio: 4.17536e+06 1.43145e+06
+2 17 -log(L): 1708.9  Spbio: 4.17536e+06 1.42818e+06
+2 18 -log(L): 1716.69  Spbio: 4.17536e+06 1.43635e+06
+2 19 -log(L): 1708.81  Spbio: 4.17536e+06 1.43015e+06
+2 20 -log(L): 1708.64  Spbio: 4.17536e+06 1.43019e+06
+2 21 -log(L): 1706.95  Spbio: 4.17536e+06 1.4305e+06
+2 22 -log(L): 1703.65  Spbio: 4.17536e+06 1.43248e+06
+2 23 -log(L): 1699.01  Spbio: 4.17536e+06 1.4335e+06
+2 24 -log(L): 1697.98  Spbio: 4.17536e+06 1.43497e+06
+2 25 -log(L): 1697.96  Spbio: 4.17536e+06 1.43389e+06
+2 26 -log(L): 1697.95  Spbio: 4.17536e+06 1.43431e+06
+phase= 2 | nvar=  6 | iter= 12 | nll=1.70e+03 | mag=2.90e-01 | par[  5]=selparm[7]
+2 27 -log(L): 1697.95  Spbio: 4.17536e+06 1.43431e+06
+3 28 -log(L): 1697.95  Spbio: 4.17536e+06 1.43431e+06
+phase= 3 | nvar= 31 | iter=  0 | nll=1.70e+03 | mag=6.30e+02 | par[ 28]=selparm[44]
+3 29 -log(L): 1697.93  Spbio: 4.17536e+06 1.43431e+06
+3 30 -log(L): 1697.73  Spbio: 4.17536e+06 1.43431e+06
+3 31 -log(L): 1695.76  Spbio: 4.17536e+06 1.43431e+06
+3 32 -log(L): 1678.46  Spbio: 4.17536e+06 1.43435e+06
+3 33 -log(L): 1646.74  Spbio: 4.17536e+06 1.44193e+06
+3 34 -log(L): 1876.85  Spbio: 4.17536e+06 1.46622e+06
+3 35 -log(L): 1642.06  Spbio: 4.17536e+06 1.44518e+06
+3 36 -log(L): 1633.8  Spbio: 4.17536e+06 1.44203e+06
+3 37 -log(L): 1622.84  Spbio: 4.17536e+06 1.45369e+06
+3 38 -log(L): 1612.47  Spbio: 4.17536e+06 1.44939e+06
+3 39 -log(L): 1606.92  Spbio: 4.17536e+06 1.45491e+06
+3 40 -log(L): 1598.49  Spbio: 4.17536e+06 1.45043e+06
+3 41 -log(L): 1590.34  Spbio: 4.17536e+06 1.44092e+06
+3 42 -log(L): 1592.07  Spbio: 4.17536e+06 1.44901e+06
+3 43 -log(L): 1586.47  Spbio: 4.17536e+06 1.44441e+06
+3 44 -log(L): 1580.08  Spbio: 4.17536e+06 1.44061e+06
+3 45 -log(L): 1572.14  Spbio: 4.17536e+06 1.43405e+06
+3 46 -log(L): 1578.59  Spbio: 4.17536e+06 1.41732e+06
+3 47 -log(L): 1569.63  Spbio: 4.17536e+06 1.42825e+06
+3 48 -log(L): 1572.4  Spbio: 4.17536e+06 1.43442e+06
+3 49 -log(L): 1568.82  Spbio: 4.17536e+06 1.43e+06
+3 50 -log(L): 1567.64  Spbio: 4.17536e+06 1.42814e+06
+3 51 -log(L): 1566.38  Spbio: 4.17536e+06 1.4322e+06
+3 52 -log(L): 1565.97  Spbio: 4.17536e+06 1.43306e+06
+3 53 -log(L): 1565.4  Spbio: 4.17536e+06 1.43229e+06
+3 54 -log(L): 1564.51  Spbio: 4.17536e+06 1.43256e+06
+3 55 -log(L): 1564.46  Spbio: 4.17536e+06 1.43561e+06
+3 56 -log(L): 1564.05  Spbio: 4.17536e+06 1.43414e+06
+phase= 3 | nvar= 31 | iter= 20 | nll=1.56e+03 | mag=4.47e+02 | par[ 29]=selparm[45]
+3 57 -log(L): 1563.55  Spbio: 4.17536e+06 1.43617e+06
+3 58 -log(L): 1562.77  Spbio: 4.17536e+06 1.43464e+06
+3 59 -log(L): 1561.99  Spbio: 4.17536e+06 1.43448e+06
+3 60 -log(L): 1561.16  Spbio: 4.17536e+06 1.43751e+06
+3 61 -log(L): 1560.18  Spbio: 4.17536e+06 1.43765e+06
+3 62 -log(L): 1559.82  Spbio: 4.17536e+06 1.43223e+06
+3 63 -log(L): 1559.48  Spbio: 4.17536e+06 1.43496e+06
+3 64 -log(L): 1559.07  Spbio: 4.17536e+06 1.43504e+06
+3 65 -log(L): 1558.58  Spbio: 4.17536e+06 1.43533e+06
+3 66 -log(L): 1557.66  Spbio: 4.17536e+06 1.43584e+06
+3 67 -log(L): 1555.62  Spbio: 4.17536e+06 1.43665e+06
+3 68 -log(L): 1568.61  Spbio: 4.17536e+06 1.44329e+06
+3 69 -log(L): 1558.64  Spbio: 4.17536e+06 1.43839e+06
+3 70 -log(L): 1554.28  Spbio: 4.17536e+06 1.43707e+06
+3 71 -log(L): 1561.81  Spbio: 4.17536e+06 1.44063e+06
+3 72 -log(L): 1552.44  Spbio: 4.17536e+06 1.43776e+06
+3 73 -log(L): 1570.39  Spbio: 4.17536e+06 1.44378e+06
+3 74 -log(L): 1560.78  Spbio: 4.17536e+06 1.43976e+06
+3 75 -log(L): 1559.04  Spbio: 4.17536e+06 1.43849e+06
+3 76 -log(L): 1556.34  Spbio: 4.17536e+06 1.43801e+06
+3 77 -log(L): 1553.67  Spbio: 4.17536e+06 1.43784e+06
+3 78 -log(L): nan  Spbio: 4.17536e+06 1.43771e+06  crash 0.170605
+3 79 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 80 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 81 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 82 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 83 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 84 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 85 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 86 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 87 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 88 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 89 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 90 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 91 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 92 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 93 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 94 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 95 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 96 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+3 97 -log(L): nan  Spbio: 4.17536e+06 2.8637e+06  crash 1.002e+06
+phase= 3 | nvar= 31 | iter= 30 | nll=nan | mag=5.22e+02 | par[ 29]=selparm[45]
+3 98 -log(L): 1552.44  Spbio: 4.17536e+06 1.43776e+06
+4 99 -log(L): 1552.44  Spbio: 4.17536e+06 1.43776e+06
+phase= 4 | nvar= 36 | iter=  0 | nll=1.55e+03 | mag=9.26e+03 | par[ 12]=selparm[23]
+4 100 -log(L): 1552.42  Spbio: 4.17536e+06 1.43776e+06
+4 101 -log(L): 1552.2  Spbio: 4.17538e+06 1.43779e+06
+4 102 -log(L): nan  Spbio: 4.17561e+06 1.43786e+06
+4 103 -log(L): 1555.87  Spbio: 4.1779e+06 1.44083e+06
+4 104 -log(L): 1563.76  Spbio: 4.07572e+06 1.34512e+06
+4 105 -log(L): 1543.24  Spbio: 4.9733e+06 2.16202e+06
+4 106 -log(L): 1580.43  Spbio: 5.96318e+06 3.03661e+06
+4 107 -log(L): 1540.61  Spbio: 5.1671e+06 2.33477e+06
+4 108 -log(L): 1536.75  Spbio: 5.35701e+06 2.4987e+06
+4 109 -log(L): 1532.22  Spbio: 5.48093e+06 2.59985e+06
+4 110 -log(L): 1536.35  Spbio: 5.80837e+06 2.90759e+06
+4 111 -log(L): 1530.5  Spbio: 5.59954e+06 2.71142e+06
+4 112 -log(L): 1531.15  Spbio: 5.72755e+06 2.83022e+06
+4 113 -log(L): 1529.83  Spbio: 5.65066e+06 2.75888e+06
+4 114 -log(L): 1528.94  Spbio: 5.71585e+06 2.82113e+06
+4 115 -log(L): 1527.62  Spbio: 5.77835e+06 2.87832e+06
+4 116 -log(L): 1525.96  Spbio: 5.82091e+06 2.92215e+06
+4 117 -log(L): 1525.97  Spbio: 5.9153e+06 3.01251e+06
+4 118 -log(L): 1525.19  Spbio: 5.86589e+06 2.96505e+06
+4 119 -log(L): 1524.42  Spbio: 5.92812e+06 3.02312e+06
+4 120 -log(L): 1523.46  Spbio: 6.02205e+06 3.10966e+06
+4 121 -log(L): 1520.06  Spbio: 6.12136e+06 3.19779e+06
+4 122 -log(L): 1570.94  Spbio: 7.20561e+06 4.15949e+06
+4 123 -log(L): 1530.77  Spbio: 6.33826e+06 3.38327e+06
+4 124 -log(L): nan  Spbio: 6.16561e+06 3.23735e+06
+4 125 -log(L): nan  Spbio: 0 nan
+4 126 -log(L): nan  Spbio: 0 nan
+4 127 -log(L): nan  Spbio: 0 nan
+4 128 -log(L): nan  Spbio: 0 nan
+4 129 -log(L): nan  Spbio: 0 nan
+4 130 -log(L): nan  Spbio: 0 nan
+4 131 -log(L): nan  Spbio: 0 nan
+4 132 -log(L): nan  Spbio: 0 nan
+4 133 -log(L): nan  Spbio: 0 nan
+4 134 -log(L): nan  Spbio: 0 nan
+4 135 -log(L): nan  Spbio: 0 nan
+4 136 -log(L): nan  Spbio: 0 nan
+4 137 -log(L): nan  Spbio: 0 nan
+4 138 -log(L): nan  Spbio: 0 nan
+4 139 -log(L): nan  Spbio: 0 nan
+4 140 -log(L): nan  Spbio: 0 nan
+4 141 -log(L): nan  Spbio: 0 nan
+4 142 -log(L): nan  Spbio: 0 nan
+4 143 -log(L): nan  Spbio: 0 nan
+4 144 -log(L): nan  Spbio: 0 nan
+4 145 -log(L): nan  Spbio: 0 nan
+4 146 -log(L): nan  Spbio: 0 nan
+4 147 -log(L): nan  Spbio: 0 nan
+4 148 -log(L): nan  Spbio: 0 nan
+4 149 -log(L): nan  Spbio: 0 nan
+4 150 -log(L): nan  Spbio: 0 nan
+4 151 -log(L): nan  Spbio: 0 nan
+phase= 4 | nvar= 36 | iter= 14 | nll=nan | mag=1.21e+03 | par[ 12]=selparm[23]
+4 152 -log(L): 1520.06  Spbio: 6.12136e+06 3.19779e+06
+5 153 -log(L): 1520.06  Spbio: 6.12136e+06 3.19779e+06
+phase= 5 | nvar= 36 | iter=  0 | nll=1.52e+03 | mag=1.31e+04 | par[ 12]=selparm[23]
+5 154 -log(L): 1520.04  Spbio: 6.12136e+06 3.19779e+06
+5 155 -log(L): 1519.83  Spbio: 6.12137e+06 3.19778e+06
+5 156 -log(L): nan  Spbio: 6.12139e+06 3.19764e+06
+5 157 -log(L): nan  Spbio: 0 nan
+5 158 -log(L): nan  Spbio: 0 nan
+5 159 -log(L): nan  Spbio: 0 nan
+5 160 -log(L): nan  Spbio: 0 nan
+5 161 -log(L): nan  Spbio: 0 nan
+5 162 -log(L): nan  Spbio: 0 nan
+5 163 -log(L): nan  Spbio: 0 nan
+5 164 -log(L): nan  Spbio: 0 nan
+5 165 -log(L): nan  Spbio: 0 nan
+5 166 -log(L): nan  Spbio: 0 nan
+5 167 -log(L): nan  Spbio: 0 nan
+5 168 -log(L): nan  Spbio: 0 nan
+5 169 -log(L): nan  Spbio: 0 nan
+5 170 -log(L): nan  Spbio: 0 nan
+5 171 -log(L): nan  Spbio: 0 nan
+5 172 -log(L): nan  Spbio: 0 nan
+5 173 -log(L): nan  Spbio: 0 nan
+5 174 -log(L): nan  Spbio: 0 nan
+5 175 -log(L): nan  Spbio: 0 nan
+5 176 -log(L): nan  Spbio: 0 nan
+5 177 -log(L): nan  Spbio: 0 nan
+5 178 -log(L): nan  Spbio: 0 nan
+5 179 -log(L): nan  Spbio: 0 nan
+5 180 -log(L): nan  Spbio: 0 nan
+5 181 -log(L): nan  Spbio: 0 nan
+5 182 -log(L): nan  Spbio: 0 nan
+5 183 -log(L): nan  Spbio: 0 nan
+5 184 -log(L): nan  Spbio: 0 nan
+phase= 5 | nvar= 36 | iter=  1 | nll=nan | mag=1.31e+04 | par[ 12]=selparm[23]
+5 185 -log(L): 1519.83  Spbio: 6.12137e+06 3.19778e+06
+6 186 -log(L): 1519.83  Spbio: 6.12137e+06 3.19778e+06
+phase= 6 | nvar= 44 | iter=  0 | nll=1.52e+03 | mag=1.34e+04 | par[ 20]=selparm[23]
+6 187 -log(L): 1519.81  Spbio: 6.12137e+06 3.19778e+06
+6 188 -log(L): 1519.61  Spbio: 6.12137e+06 3.19777e+06
+6 189 -log(L): nan  Spbio: 6.12139e+06 3.19761e+06
+6 190 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 191 -log(L): 1530.36  Spbio: 5.94664e+06 3.03649e+06
+6 192 -log(L): 1700.57  Spbio: 4.80251e+06 1.98012e+06
+6 193 -log(L): 1987.34  Spbio: 3.81207e+06 1.02096e+06
+6 194 -log(L): 1.02773e+06  Spbio: 1.05746e+06 0.0454383  crash 1.002e+06
+6 195 -log(L): 1.02781e+06  Spbio: 1.05174e+06 0.0452959  crash 1.002e+06
+6 196 -log(L): 1.02788e+06  Spbio: 1.04603e+06 0.0451502  crash 1.002e+06
+6 197 -log(L): 1.02797e+06  Spbio: 1.03986e+06 0.044986  crash 1.002e+06
+6 198 -log(L): 1.02808e+06  Spbio: 1.0331e+06 0.044796  crash 1.002e+06
+6 199 -log(L): 1.02822e+06  Spbio: 1.02543e+06 0.0445645  crash 1.002e+06
+6 200 -log(L): 1.02837e+06  Spbio: 1.01626e+06 0.044348  crash 1.002e+06
+6 201 -log(L): 1.02839e+06  Spbio: 1.01284e+06 0.0443003  crash 1.002e+06
+6 202 -log(L): 1.02842e+06  Spbio: 1.00957e+06 0.0442548  crash 1.002e+06
+6 203 -log(L): 1.02844e+06  Spbio: 1.00626e+06 0.0442086  crash 1.002e+06
+6 204 -log(L): 1.02847e+06  Spbio: 1.0029e+06 0.0441618  crash 1.002e+06
+6 205 -log(L): 1.0285e+06  Spbio: 999502 0.044114  crash 1.002e+06
+6 206 -log(L): 1.02852e+06  Spbio: 996161 0.0440675  crash 1.002e+06
+6 207 -log(L): 1.02855e+06  Spbio: 992801 0.0440206  crash 1.002e+06
+6 208 -log(L): 1.02858e+06  Spbio: 989403 0.0439732  crash 1.002e+06
+6 209 -log(L): 1.0286e+06  Spbio: 986150 0.0439286  crash 1.002e+06
+6 210 -log(L): 1.02863e+06  Spbio: 982885 0.0438837  crash 1.002e+06
+6 211 -log(L): 1.02865e+06  Spbio: 979572 0.0438389  crash 1.002e+06
+6 212 -log(L): 1.02868e+06  Spbio: 976209 0.0437939  crash 1.002e+06
+6 213 -log(L): 1.02871e+06  Spbio: 972790 0.0437477  crash 1.002e+06
+6 214 -log(L): 1.02874e+06  Spbio: 969308 0.0437004  crash 1.002e+06
+6 215 -log(L): 1.02877e+06  Spbio: 965758 0.0436516  crash 1.002e+06
+6 216 -log(L): 1.0288e+06  Spbio: 962132 0.0436014  crash 1.002e+06
+6 217 -log(L): 1.02884e+06  Spbio: 958423 0.0435495  crash 1.002e+06
+6 218 -log(L): 1.02887e+06  Spbio: 954619 0.0434956  crash 1.002e+06
+6 219 -log(L): 1.02891e+06  Spbio: 950710 0.0434395  crash 1.002e+06
+6 220 -log(L): 1.02895e+06  Spbio: 946680 0.0433809  crash 1.002e+06
+6 221 -log(L): 1.029e+06  Spbio: 942512 0.0433194  crash 1.002e+06
+phase= 6 | nvar= 44 | iter=  2 | nll=1.52e+03 | mag=1.27e+02 | par[ 28]=selparm[31]
+Optimization completed after 9 s with final statistics:
+  nll=1522.092674 | mag=1.26927e+02 | par[ 28]=selparm[31]
+
+6 222 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (44 variables): 6 223 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 224 -log(L): 1522.09  Spbio: 6.12163e+06 3.19765e+06
+6 225 -log(L): 1522.09  Spbio: 6.12163e+06 3.19753e+06
+6 226 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 227 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 228 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 229 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 230 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 231 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 232 -log(L): 1522.09  Spbio: 6.12163e+06 3.1976e+06
+6 233 -log(L): 1522.09  Spbio: 6.12163e+06 3.19757e+06
+6 234 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 235 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 236 -log(L): 1522.09  Spbio: 6.12192e+06 3.19783e+06
+6 237 -log(L): 1522.09  Spbio: 6.12134e+06 3.19734e+06
+6 238 -log(L): 1522.09  Spbio: 6.12166e+06 3.19761e+06
+6 239 -log(L): 1522.09  Spbio: 6.1216e+06 3.19756e+06
+6 240 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 241 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 242 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 243 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 244 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 245 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 246 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 247 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 248 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 249 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 250 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 251 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 252 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 253 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 254 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 255 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 256 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 257 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 258 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 259 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 260 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 261 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 262 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 263 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 264 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 265 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 266 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 267 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+20%6 268 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 269 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 270 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 271 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 272 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 273 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 274 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 275 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 276 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 277 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 278 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 279 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 280 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 281 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 282 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 283 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 284 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 285 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 286 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 287 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 288 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 289 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 290 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 291 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 292 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 293 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 294 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 295 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 296 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 297 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 298 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 299 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+, 40%6 300 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 301 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 302 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 303 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 304 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 305 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 306 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 307 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 308 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 309 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 310 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 311 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 312 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 313 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 314 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 315 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 316 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 317 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 318 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 319 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 320 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 321 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 322 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 323 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 324 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 325 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 326 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 327 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 328 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 329 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 330 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 331 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+, 60%6 332 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 333 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 334 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 335 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 336 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 337 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 338 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 339 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 340 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 341 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 342 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 343 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 344 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 345 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 346 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 347 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 348 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 349 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 350 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 351 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 352 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 353 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 354 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 355 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 356 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 357 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 358 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 359 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 360 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 361 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 362 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 363 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+, 80%6 364 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 365 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 366 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 367 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 368 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 369 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 370 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 371 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 372 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 373 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 374 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 375 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 376 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 377 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 378 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 379 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 380 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 381 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 382 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 383 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 384 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 385 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 386 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 387 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 388 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 389 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 390 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 391 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 392 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 393 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 394 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 395 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+, 100%6 396 -log(L): 1522.09  Spbio: 6.12163e+06 3.19758e+06
+6 397 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 398 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+6 399 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+ done (6.9 s) 
+Differentiating 8 derived quantities: 6 400 -log(L): 1522.09  Spbio: 6.12163e+06 3.19759e+06
+1, 2, 3, 4, 5, 6, 7, 8 done (16 s) 
+Inverting Hessian (44 variables): 20%, 40%, 60%, 80%, 100%
+
+ Error: Estimated variance of parameter 1 is -0.300232, failed to invert Hessian.
+        No uncertainty estimates available. Fix model structure and reoptimize.
+Iterations: 400
+Finished forecast
+Writing wtatage.ss_new
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 26 warnings  and 2 notes 
+
+Finished running model 'ss3' after 32 s.

@@ -1,0 +1,44 @@
+###
+console output
+2024-04-30 17:37:47.420792
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 3 at Tue Apr 30 17:32:50 2024
+phase= 1 | nvar= 11 | iter=  0 | nll=7.75e+02 | mag=1.94e+02 | par[  7]=selparm[27]
+phase= 1 | nvar= 11 | iter= 14 | nll=7.70e+02 | mag=1.96e-01 | par[  7]=selparm[27]
+phase= 2 | nvar= 11 | iter=  0 | nll=7.70e+02 | mag=1.96e-01 | par[  7]=selparm[27]
+phase= 3 | nvar= 32 | iter=  0 | nll=7.70e+02 | mag=4.47e+01 | par[ 28]=selparm[48]
+phase= 3 | nvar= 32 | iter= 20 | nll=7.66e+02 | mag=2.59e+01 | par[ 10]=selparm[9]
+phase= 3 | nvar= 32 | iter= 40 | nll=7.66e+02 | mag=1.39e-01 | par[ 12]=selparm[13]
+phase= 3 | nvar= 32 | iter= 60 | nll=7.66e+02 | mag=1.07e-02 | par[ 10]=selparm[9]
+phase= 3 | nvar= 32 | iter= 64 | nll=7.66e+02 | mag=6.39e-05 | par[ 12]=selparm[13]
+Optimization completed after 20 s with final statistics:
+  nll=765.507817 | mag=6.38912e-05 | par[ 12]=selparm[13]
+
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Calculating Hessian (32 variables): 20%, 40%, 60%, 80%, 100% done (25 s) 
+Differentiating 8 derived quantities: 1, 2, 3, 4, 5, 6, 7, 8 done (4 m 8.5 s) 
+Inverting Hessian (32 variables): 20%, 40%, 60%, 80%, 100% done (0.001 s) 
+Starting standard error calculations...  done (0.28 s) 
+Iterations: 234
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+ finished appending to cumreport.sso 
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 1 warning  and 2 notes 
+
+Finished running model 'ss3' after 4 m 57 s.

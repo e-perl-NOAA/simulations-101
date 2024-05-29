@@ -1,0 +1,16 @@
+$par
+[1] 1957.4947659 1970.9999998 1999.6597408 2002.1751195    0.6700839
+
+$value
+[1] 0.465799
+
+$counts
+function gradient 
+      13        1 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
