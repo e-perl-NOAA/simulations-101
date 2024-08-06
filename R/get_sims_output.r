@@ -77,9 +77,9 @@ get_sims_output <- function(dir = dir,
   for(i in 1:length(var)){
   # for some odd reason this isn't working right
   # error that I keep getting is Error in `[.data.frame`(sims_var, , grep(em_names[e], colnames(sims_var))) : undefined columns selected
-  # sims_plots_by_var <- 
-  #   furrr::future_map(sims_results, ~sims_plots(sims_data_frames = sims_results, var = var[1])
-  #   )
+   sims_plots_by_var <- 
+     furrr::future_map(sims_results, ~sims_plots(sims_data_frames = sims_results, var = var[i])
+     )
 
   
   # Combine all models into one page plot
@@ -216,65 +216,3 @@ sims_plots <- function(sims_data_frames,
    
    sims_plot_output
  }
-
-# One diagnostic that would be useful is which of the estimation models converged - already have
-
-# 3 plots for each SSplotComparisons
-# get polygons for median om, median recdev 1, quantiles recdev 1
-# get polygons for median om, median recdev 2, quantiles recdev 2
-# get polygons for median om, median recdev 3, quantiles recdev 3
-# mylist[["n"]] <- n
-# mylist[["npars"]] <- npars
-# mylist[["modelnames"]] <- modelnames
-# mylist[["maxgrad"]] <- maxgrad
-# mylist[["nsexes"]] <- nsexes
-# mylist[["startyrs"]] <- startyrs
-# mylist[["endyrs"]] <- endyrs
-# mylist[["pars"]] <- copy.dm(pars)
-# mylist[["parsSD"]] <- copy.dm(parsSD)
-# mylist[["parphases"]] <- copy.dm(parphases)
-# mylist[["par_prior_likes"]] <- copy.dm(par_prior_likes)
-# mylist[["quants"]] <- quants
-# mylist[["quantsSD"]] <- quantsSD
-# mylist[["likelihoods"]] <- likelihoods
-# mylist[["likelambdas"]] <- likelambdas
-# mylist[["likelihoods_by_fleet"]] <- likelihoods_by_fleet
-# mylist[["likelihoods_by_tag_group"]] <- likelihoods_by_tag_group
-# mylist[["SpawnBio"]] <- sort.fn(SpawnBio)
-# mylist[["SpawnBioSD"]] <- sort.fn(SpawnBioSD)
-# mylist[["SpawnBioLower"]] <- sort.fn(SpawnBioLower)
-# mylist[["SpawnBioUpper"]] <- sort.fn(SpawnBioUpper)
-# mylist[["Bratio"]] <- sort.fn(Bratio)
-# mylist[["BratioSD"]] <- sort.fn(BratioSD)
-# mylist[["BratioLower"]] <- sort.fn(BratioLower)
-# mylist[["BratioUpper"]] <- sort.fn(BratioUpper)
-# mylist[["SPRratio"]] <- sort.fn(SPRratio)
-# mylist[["SPRratioSD"]] <- sort.fn(SPRratioSD)
-# mylist[["SPRratioLower"]] <- sort.fn(SPRratioLower)
-# mylist[["SPRratioUpper"]] <- sort.fn(SPRratioUpper)
-# mylist[["SPRratioLabels"]] <- SPRratioLabels
-# mylist[["Fvalue"]] <- sort.fn(Fvalue)
-# mylist[["FvalueSD"]] <- sort.fn(FvalueSD)
-# mylist[["FvalueLower"]] <- sort.fn(FvalueLower)
-# mylist[["FvalueUpper"]] <- sort.fn(FvalueUpper)
-# mylist[["FvalueLabels"]] <- FvalueLabels
-# mylist[["sprtargs"]] <- sprtargs
-# mylist[["btargs"]] <- btargs
-# mylist[["minbthreshs"]] <- minbthreshs
-# mylist[["recruits"]] <- sort.fn(recruits)
-# mylist[["recruitsSD"]] <- sort.fn(recruitsSD)
-# mylist[["recruitsLower"]] <- sort.fn(recruitsLower)
-# mylist[["recruitsUpper"]] <- sort.fn(recruitsUpper)
-# mylist[["recdevs"]] <- merge.duplicates(sort.fn(recdevs))
-# mylist[["recdevsSD"]] <- merge.duplicates(sort.fn(recdevsSD))
-# mylist[["recdevsLower"]] <- merge.duplicates(sort.fn(recdevsLower))
-# mylist[["recdevsUpper"]] <- merge.duplicates(sort.fn(recdevsUpper))
-# mylist[["growth"]] <- growth
-# mylist[["sizesel"]] <- sizesel
-# mylist[["agesel"]] <- agesel
-# mylist[["indices"]] <- indices
-# mylist[["InitAgeYrs"]] <- InitAgeYrs
-# mylist[["lowerCI"]] <- lowerCI
-# mylist[["upperCI"]] <- upperCI
-# mylist[["SpawnOutputUnits"]] <- SpawnOutputUnits
-# mylist[["FleetNames"]] <- FleetNames

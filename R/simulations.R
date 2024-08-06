@@ -1,5 +1,3 @@
-# install.packages("pak") # if needed
-# pak::pkg_install("r4ss/r4ss")
 library(furrr)
 library(r4ss)
 library(future)
@@ -10,17 +8,8 @@ library(ggtext)
 
 dir <- getwd()
 
-# r4ss::get_ss3_exe()
+# r4ss::get_ss3_exe() if needed
 new_filename <- "unnested_iterations"
-new_filename <- "all_models_iterations_test"
-
-# dirs <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
-# 
-# dirs <- subset(dirs, !grepl(dirs, pattern = ".Rproj.user"))
-# dirs <- grep('.git', dirs, fixed = TRUE, value = TRUE, invert = TRUE)
-# dirs <- grep('new_unnested_iterations', dirs, fixed = TRUE, value = TRUE, invert = TRUE)
-# dirs <- grep(paste0(dir, "/R"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
-# dirs <- grep(paste0(dir, "/.Rproj.user"), dirs, fixed = TRUE, value = TRUE, invert = TRUE, ignore.case = FALSE)
 
 
 
@@ -57,6 +46,7 @@ copy_files_to_em_unnested(dir = dir,
 
 
 #### Step 4 - Run EMs ####
+# Removed BigSkate from models because Inf in file was causing issues
 # start_time <- Sys.time()
 ncores <- parallelly::availableCores(omit = 1)
 future::plan(multisession, workers = ncores)
@@ -70,64 +60,56 @@ unnested_change_run_em_parallel(dir = dir,
 # This takes 47.97 min on VM 
 # This takes 1 hr 59 min on desktop
 
-
-# Get results
-# sims_models <- list.dirs(file.path(dir, new_filename), recursive = FALSE)
-# model_names <- grep("plots", unique(gsub("-.*","",basename(sims_models))), invert = TRUE, value = TRUE)
-# 
+#### Step 5 - Get results
 # get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
 #                 var = c("recdevs", "Spawnbio", "Bratio", "SPRratio", "Fvalue"),
 #                 model_names = model_names[3:5])
-# Removed BigSkate in get_sims_output function because Inf in file was causing issues
-
+source(file.path(getwd(),"R/get_sims_output.r")
 ncores <- parallelly::availableCores(omit = 1)
 future::plan(multisession, workers = ncores)
 get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
                 var = c("recdevs", "Spawnbio", "Bratio"),
                 model_names = NULL)
 
-start_time <- Sys.time()
-stop_time <- Sys.time()
-parallel_time <- stop_time - start_time
+#start_time <- Sys.time()
+#stop_time <- Sys.time()
+#parallel_time <- stop_time - start_time
 
 
 
 
 
 # What is this?????
-model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
-model_run_completed <- function(.x){
-  files <- list.files(file.path(dir, "unnested_iterations", .x))
-  report_in_files <- grepl(list.files(files), pattern = "Report.sso")
-  model <- .x
-  df <- data.frame(model, report_in_files)
-  names(df) < c("model", "report_in_files")
-}
-report.all <- do.call(rbind, model_run)
+#model_run <- purrr::map(.x = list.dir, .f = model_run_completed)
+#model_run_completed <- function(.x){
+#  files <- list.files(file.path(dir, "unnested_iterations", .x))
+#  report_in_files <- grepl(list.files(files), pattern = "Report.sso")
+#  model <- .x
+#  df <- data.frame(model, report_in_files)
+#  names(df) < c("model", "report_in_files")
+#}
+#report.all <- do.call(rbind, model_run)
 
 # Convergence --- is this anywhere else?
-convergence <- data.frame()
-model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
-model_dir <- model_dir[!grepl("plots", model_dir)]
-model_dir <- model_dir[!grepl("-om_", model_dir)]
-for(m in 1:length(model_dir)){
-convergence_fill <- data.frame(
-  model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
-  iteration = paste0("iteration_",gsub(".*-iteration_","",basename(model_dir[m]))),
-  model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
-  model_converged2 = 
-    if(file.exists(file.path(model_dir[m], "covar.sso"))){
-       !any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))}
-)
-convergence <- rbind(convergence, convergence_fill)
-}
-convergence_new <- convergence |>
-  dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
-                                      model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
-  dplyr::select(-model_converged1, -model_converged2)
-
-
-
+#convergence <- data.frame()
+#model_dir <- list.dirs(grep(new_filename, list.dirs(dir, recursive = FALSE, full.names = TRUE), value = TRUE), recursive = FALSE, full.names = TRUE)
+#model_dir <- model_dir[!grepl("plots", model_dir)]
+#model_dir <- model_dir[!grepl("-om_", model_dir)]
+#for(m in 1:length(model_dir)){
+#convergence_fill <- data.frame(
+#  model_name =  gsub(paste0(".*", new_filename,"/|-em_.*"),"", model_dir[m]),
+#  iteration = paste0("iteration_",gsub(".*-iteration_","",basename(model_dir[m]))),
+#  model_converged1 = file.exists(file.path(model_dir[m], "covar.sso")),
+#  model_converged2 = 
+#    if(file.exists(file.path(model_dir[m], "covar.sso"))){
+#       !any(grepl("do not write", readLines(file.path(model_dir[m], "covar.sso"))))}
+#)
+#convergence <- rbind(convergence, convergence_fill)
+#}
+#convergence_new <- convergence |>
+#  dplyr::mutate(converged = dplyr::case_when(model_converged1 == TRUE & model_converged2 == TRUE ~ TRUE,
+#                                      model_converged1 == FALSE | model_converged2 == FALSE ~ FALSE )) |>
+#  dplyr::select(-model_converged1, -model_converged2)
 
 
 # Get results from EMs and OMs in parallel - this is a different way, the ss3sim way to get results
