@@ -83,7 +83,7 @@ unnested_change_run_em_parallel(dir = dir,
 ncores <- parallelly::availableCores(omit = 1)
 future::plan(multisession, workers = ncores)
 get_sims_output(dir = dir, new_filename = "unnested_iterations", file_copy = TRUE, df = df, 
-                var = c("recdevs"),
+                var = c("recdevs", "Spawnbio", "Bratio"),
                 model_names = NULL)
 
 start_time <- Sys.time()
